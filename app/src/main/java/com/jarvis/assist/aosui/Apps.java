@@ -10,4 +10,12 @@ public class Apps {
     public static class AppSettings extends android.app.Activity {
         public AppSettings() { }
     }
+
+    public static class AppAssist extends android.app.Activity {
+        public AppAssist() { }
+    }
+
+    public static class AppBrief extends android.app.Activity {
+        public AppBrief() { }
+    }
 }

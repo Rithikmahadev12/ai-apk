@@ -1,4 +1,5 @@
 package com.jarvis.assist.aosui;
+import com.jarvis.assist.R;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -424,7 +425,7 @@ public class AosHome extends Activity {
                 Context context2 = context;
                 Uri uri2 = uri;
                 boolean z = contains;
-                Toast.makeText(context2, uri2.getHost().toUpperCase(Locale.ROOT) + (r3 ? " connected" : " sign-in failed"), 0).show();
+                Toast.makeText(context2, uri2.getHost().toUpperCase(Locale.ROOT) + (r3Var ? " connected" : " sign-in failed"), 0).show();
             }
         });
         try {
@@ -678,7 +679,7 @@ public class AosHome extends Activity {
         super.onCreate(bundle);
         backOn();
         getClass();
-        if (getClass() == Home.class && Crash.safe(this)) {
+        if (this instanceof Home && Crash.safe(this)) {
             this.safe = SafeMode.view(this);
             setContentView(this.safe);
             return;
@@ -688,7 +689,7 @@ public class AosHome extends Activity {
         window.getDecorView().setSystemUiVisibility(1792);
         if (Build.VERSION.SDK_INT >= 28) {
             WindowManager.LayoutParams attributes = window.getAttributes();
-            attributes.layoutInDisplayCutoutMode = (Build.VERSION.SDK_INT < 30 || getClass() != Home.class) ? 1 : 3;
+            attributes.layoutInDisplayCutoutMode = (Build.VERSION.SDK_INT < 30 || !(this instanceof Home)) ? 1 : 3;
             window.setAttributes(attributes);
         }
         Memory.init(this);
@@ -700,9 +701,9 @@ public class AosHome extends Activity {
         }
         try {
             registerReceiver(this.power, new IntentFilter("android.intent.action.ACTION_POWER_CONNECTED"), 2);
-        } catch (Exception e2) {
+        } catch (Exception eCatch2) {
         }
-        if (getClass() != Home.class) {
+        if (!(this instanceof Home)) {
             synchronized (others) {
                 others.removeIf(new Predicate() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda12
                     @Override // java.util.function.Predicate
@@ -710,22 +711,22 @@ public class AosHome extends Activity {
                         return Home.lambda$onCreate$8((WeakReference) obj);
                     }
                 });
-                others.add(new WeakReference<>(this));
+                others.add(new java.lang.ref.WeakReference<Home>((Home)this));
             }
         }
-        if (getClass() == Apps.AppSettings.class) {
+        if (this instanceof Apps.AppSettings) {
             slideDeclare();
-            this.sett = new NativeSettings(new Backend(this));
+            this.sett = new NativeSettings(new Backend((Home)this));
             setContentView(this.sett.view());
             applyPerf();
             String action = getIntent() != null ? getIntent().getAction() : null;
-            r0 = "android.intent.action.VIEW_PERMISSION_USAGE".equals(action) || "androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE".equals(action);
-            this.sett.open(r0 ? "privacy" : screen(getIntent()), r0 ? null : screenRes(getIntent()));
+            r0Var = "android.intent.action.VIEW_PERMISSION_USAGE".equals(action) || "androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE".equals(action);
+            this.sett.open(r0Var ? "privacy" : screen(getIntent()), r0Var ? null : screenRes(getIntent()));
             oauth(getIntent());
             return;
         }
-        if (getClass() == Apps.AppAssist.class) {
-            this.asst = new NativeAssist(new Backend(this));
+        if (this instanceof Apps.AppAssist) {
+            this.asst = new NativeAssist(new Backend((Home)this));
             setContentView(this.asst.view());
             applyPerf();
             String action2 = getIntent() != null ? getIntent().getAction() : null;
@@ -734,14 +735,14 @@ public class AosHome extends Activity {
             boolean z = "android.intent.action.ASSIST".equals(action2) || "android.intent.action.VOICE_COMMAND".equals(action2) || (getIntent() != null && getIntent().getBooleanExtra("voice", false));
             NativeAssist nativeAssist = this.asst;
             if (z && str == null) {
-                r0 = true;
+                r0Var = true;
             }
-            nativeAssist.start(str, r0);
+            nativeAssist.start(str, r0Var);
             takeShare(getIntent());
             return;
         }
-        if (getClass() == Apps.AppBrief.class) {
-            this.brief = new BriefPage(new Backend(this));
+        if (this instanceof Apps.AppBrief) {
+            this.brief = new BriefPage(new Backend((Home)this));
             setContentView(this.brief.view());
             applyPerf();
             this.brief.open();
@@ -749,7 +750,7 @@ public class AosHome extends Activity {
         }
         AppIndex.on(this.appsChanged);
         Crash.starting(this);
-        this.nat = new NativeHome(new Backend(this));
+        this.nat = new NativeHome(new Backend((Home)this));
         setContentView(this.nat.view());
         getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(this.firstDraw);
         if (Build.VERSION.SDK_INT >= 29) {
@@ -758,7 +759,7 @@ public class AosHome extends Activity {
                 if (powerManager != null) {
                     powerManager.addThermalStatusListener(getMainExecutor(), (PowerManager.OnThermalStatusChangedListener) this.thermal);
                 }
-            } catch (Exception e3) {
+            } catch (Exception eCatch3) {
             }
         }
         oauth(getIntent());
@@ -952,11 +953,11 @@ public class AosHome extends Activity {
                         } finally {
                         }
                     }
-                } catch (FileNotFoundException e2) {
-                    e = e2;
+                } catch (FileNotFoundException eCatch2) {
+                    Exception e = eCatch2;
                     Log.w("aOS", "shared image not readable: " + e.getClass().getSimpleName());
-                } catch (SecurityException e3) {
-                    e = e3;
+                } catch (SecurityException eCatch3) {
+                    e = eCatch3;
                     Log.w("aOS", "shared image not readable: " + e.getClass().getSimpleName());
                 } catch (Throwable th3) {
                     Log.w("aOS", "shared image skipped: " + th3.getClass().getSimpleName());
@@ -1121,7 +1122,7 @@ public class AosHome extends Activity {
     @Override // android.app.Activity
     protected void onStop() {
         Home front2 = front();
-        if (this.nat != null && (front2 == null || front2 == this)) {
+        if (this.nat != null && (front2 == null || front2 == (Home)this)) {
             this.nat.onStop();
         }
         if (this.nat != null) {
@@ -1254,7 +1255,7 @@ public class AosHome extends Activity {
     @Override // android.app.Activity
     public void finish() {
         super.finish();
-        if (getClass() != Apps.AppSettings.class || Build.VERSION.SDK_INT >= 34) {
+        if (!(this instanceof Apps.AppSettings) || Build.VERSION.SDK_INT >= 34) {
             return;
         }
         int[] slideAnims = slideAnims(false);
@@ -1294,7 +1295,7 @@ public class AosHome extends Activity {
     protected void onPause() {
         super.onPause();
         this.resumed = false;
-        if (front() == this) {
+        if (front() == (Home)this) {
             front.clear();
         }
         if (this.nat != null) {
@@ -1320,12 +1321,12 @@ public class AosHome extends Activity {
         boolean anyMatch;
         super.onResume();
         this.resumed = true;
-        front = new WeakReference<>(this);
+        front = new java.lang.ref.WeakReference<Home>((Home)this);
         hideBars();
         if (this.micWanted && checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
             micAnswered();
         }
-        if (getClass() == Home.class) {
+        if (this instanceof Home) {
             synchronized (others) {
                 others.removeIf(new Predicate() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda15
                     @Override // java.util.function.Predicate
@@ -1422,7 +1423,7 @@ public class AosHome extends Activity {
             this.vo.destroy();
         }
         this.vo = null;
-        if (front() == this) {
+        if (front() == (Home)this) {
             front.clear();
         }
         Memory.off(this.trim);
@@ -1439,16 +1440,16 @@ public class AosHome extends Activity {
         }
         try {
             unregisterReceiver(this.power);
-        } catch (Exception e2) {
+        } catch (Exception eCatch2) {
         }
         if (Build.VERSION.SDK_INT >= 29) {
             try {
                 ((PowerManager) getSystemService(PowerManager.class)).removeThermalStatusListener((PowerManager.OnThermalStatusChangedListener) this.thermal);
-            } catch (Exception e3) {
+            } catch (Exception eCatch3) {
             }
         }
         super.onDestroy();
-        if (getClass() != Home.class) {
+        if (!(this instanceof Home)) {
             Memory.reclaimSoon();
         }
     }
@@ -1527,7 +1528,7 @@ public class AosHome extends Activity {
         } catch (Exception e) {
             try {
                 Toast.makeText(this, "Could not open that", 0).show();
-            } catch (Exception e2) {
+            } catch (Exception eCatch2) {
             }
         }
     }
@@ -2221,12 +2222,12 @@ public class AosHome extends Activity {
                                 return;
                             }
                         } catch (ActivityNotFoundException e) {
-                        } catch (SecurityException e2) {
+                        } catch (SecurityException eCatch2) {
                         }
                         try {
                             Home.this.startActivity(new Intent("android.settings.HOME_SETTINGS").addFlags(268435456));
                             return;
-                        } catch (ActivityNotFoundException | SecurityException e3) {
+                        } catch (ActivityNotFoundException | SecurityException eCatch3) {
                             Home.this.safeStart(new Intent("android.settings.SETTINGS").addFlags(268435456));
                             Home.this.toast("Pick aOS under Apps › Default apps › Home app");
                             return;
@@ -2279,7 +2280,7 @@ public class AosHome extends Activity {
             } catch (Exception e) {
                 try {
                     Home.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://duckduckgo.com/?q=" + Uri.encode(str))).addFlags(268435456));
-                } catch (Exception e2) {
+                } catch (Exception eCatch2) {
                     Home.this.toast("Could not open that");
                 }
             }
@@ -2906,7 +2907,7 @@ public class AosHome extends Activity {
             } catch (Exception e) {
                 try {
                     Home.this.startActivity(new Intent("android.health.connect.action.HEALTH_HOME_SETTINGS").addFlags(268435456));
-                } catch (Exception e2) {
+                } catch (Exception eCatch2) {
                     Home.this.toast("Could not open that");
                 }
             }
@@ -3031,7 +3032,7 @@ public class AosHome extends Activity {
             } catch (Exception e) {
                 try {
                     Home.this.startActivity(new Intent("android.service.wallpaper.LIVE_WALLPAPER_CHOOSER").addFlags(268435456));
-                } catch (Exception e2) {
+                } catch (Exception eCatch2) {
                     Home.this.toast("Could not open that");
                 }
             }
@@ -3158,7 +3159,7 @@ public class AosHome extends Activity {
                 java.lang.String r0 = "service"
                 java.lang.String r1 = ""
                 java.lang.String r2 = "admin"
-                boolean r3 = com.jarvis.assist.aosui.LockService.ready()     // Catch: org.json.JSONException -> L5e
+                boolean r3Var = com.jarvis.assist.aosui.LockService.ready()     // Catch: org.json.JSONException -> L5e
                 boolean r4 = r12.adminOn()     // Catch: org.json.JSONException -> L5e
                 com.jarvis.assist.aosui.Home r5 = com.jarvis.assist.aosui.Home.this     // Catch: org.json.JSONException -> L5e
                 android.content.SharedPreferences r5 = r5.prefs     // Catch: org.json.JSONException -> L5e
@@ -3378,7 +3379,7 @@ public class AosHome extends Activity {
                     if (!queryIntentActivities.isEmpty()) {
                         str2 = String.valueOf(queryIntentActivities.get(0).loadLabel(packageManager));
                     }
-                } catch (Exception e2) {
+                } catch (Exception eCatch2) {
                 }
             }
             return HomeRules.appLabel(str, str2);
@@ -3591,3 +3592,4 @@ public class AosHome extends Activity {
         }
     }
 }
+

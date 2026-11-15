@@ -1,22 +1,37 @@
 package com.jarvis.assist.aosui;
 
-public class Home extends android.app.Activity {
-    public Consumer picNative;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import java.util.function.Consumer;
+
+public class Home extends Activity {
+    public java.util.function.Consumer<String> picNative;
+    public NativeHome nat;
+    public NativeSettings sett;
+    public NativeAssist asst;
+    public com.jarvis.assist.aosui.brief.BriefPage brief;
+    public Voice vo;
+    public android.view.View safe;
+    public static java.lang.ref.WeakReference<Home> front;
+    public static java.util.List<java.lang.ref.WeakReference<Home>> others = new java.util.ArrayList<>();
+
     public Home() { }
-    static void finishOthers() { }
-    static Home front() { return null; }
-    static void lambda$answer$22(Object p0, Object p1) { }
-    static void lambda$frameSpikes$0(Object p0, Object p1, Object p2) { }
-    static void lambda$oauth$1(Object p0, Object p1, Object p2) { }
-    static boolean lambda$onCreate$8(Object p0) { return false; }
-    private void lambda$onCreate$9(Object p0) { }
-    static void lambda$onRequestPermissionsResult$19(Object p0) { }
-    static boolean lambda$onResume$16(Object p0) { return false; }
-    static boolean lambda$onResume$17(Object p0) { return false; }
-    static void notif(Object p0) { }
-    static java.lang.String screen(Object p0) { return null; }
-    static java.lang.String screenRes(Object p0) { return null; }
-    static int[] slideAnims(Object p0) { return null; }
+    public static void finishOthers() { }
+    public static Home front() { return front != null ? front.get() : null; }
+    public static void lambda$answer$22(Object p0, Object p1) { }
+    public static void lambda$frameSpikes$0(Object p0, Object p1, Object p2) { }
+    public static void lambda$oauth$1(Object p0, Object p1, Object p2) { }
+    public static boolean lambda$onCreate$8(Object p0) { return false; }
+    public void lambda$onCreate$9(Object p0) { }
+    public static void lambda$onRequestPermissionsResult$19(Object p0) { }
+    public static boolean lambda$onResume$16(Object p0) { return false; }
+    public static boolean lambda$onResume$17(Object p0) { return false; }
+    public static void notif(Object p0) { }
+    public static java.lang.String screen(Object p0) { return null; }
+    public static java.lang.String screenRes(Object p0) { return null; }
+    public static int[] slideAnims(Object p0) { return null; }
     public boolean land() { return false; }
     public void lists() { }
     public void load(Object p0) { }
@@ -27,6 +42,7 @@ public class Home extends android.app.Activity {
     public void notifs() { }
     public long now() { return 0; }
     public boolean onBack() { return false; }
+    public void back() { }
     public void onConfig() { }
     public void onDestroy() { }
     public void onPause() { }
@@ -40,16 +56,25 @@ public class Home extends android.app.Activity {
     public android.view.View view() { return null; }
     public void weather() { }
     public void toast(String s) { }
-    public void awView(int i) { }
+    public android.view.View awView(int i) { return null; }
     public void awDrop(int i) { }
     public void awShown(int i) { }
     public java.lang.String deviceInfo() { return null; }
     public void applyPerf() { }
-    public void runOnUiThread(Runnable r) { }
-    public android.content.Context getApplicationContext() { return null; }
-    public android.content.pm.PackageManager getPackageManager() { return null; }
-    public void startActivityForResult(android.content.Intent i, int req) { }
-    public void finish() { }
+    public boolean saving() { return false; }
+    public void m5lambda$applyPerf$14$comaugmaosoHome() { }
+    public void m7lambda$new$12$comaugmaosoHome() { }
+    public void m8lambda$new$13$comaugmaosoHome(Object p0) { }
+    public void m9lambda$new$15$comaugmaosoHome(Object p0, Object p1) { }
+    public void m10lambda$oauth$2$comaugmaosoHome(Object p0, Object p1) { }
+    public void m11lambda$onActivityResult$3$comaugmaosoHome(Object p0, Object p1, Object p2) { }
+    public void m12lambda$onActivityResult$4$comaugmaosoHome(Object p0, Object p1) { }
+    public void m13lambda$onActivityResult$5$comaugmaosoHome(Object p0, Object p1) { }
+    public void m14lambda$onActivityResult$6$comaugmaosoHome(Object p0, Object p1) { }
+    public void m15lambda$onActivityResult$7$comaugmaosoHome(Object p0, Object p1) { }
+    public void m16lambda$takeShare$10$comaugmaosoHome() { }
+    public void m17lambda$takeShare$11$comaugmaosoHome(Object p0, Object p1) { }
+    public void m20lambda$onDraw$0$comaugmaosoHome$1(Object p0) { }
 
     public static class Phone {
         public Phone() { }
