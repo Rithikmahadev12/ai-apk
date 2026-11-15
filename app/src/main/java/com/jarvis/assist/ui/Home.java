@@ -117,7 +117,7 @@ public class Home extends AppCompatActivity {
         buildHud();
 
         if (Store.hasServer() && Store.hasUser()) {
-            show(S_HUD); loadHud();
+            show(S_HUD); startActivity(new android.content.Intent(this, com.jarvis.assist.aosui.AosUiActivity.class)); finish();
         } else if (Store.hasServer()) {
             show(S_PICKER); loadProfiles(Store.serverUrl());
         } else {
