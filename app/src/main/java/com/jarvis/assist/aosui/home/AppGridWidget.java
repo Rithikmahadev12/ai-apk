@@ -118,7 +118,6 @@ public final class AppGridWidget extends WidgetView {
     @Override // com.jarvis.assist.aosui.home.WidgetView
     protected void drawRow(Canvas canvas, int i, float f, float f2, float f3, float f4) {
         boolean z;
-        r10 != null ? r10 : null;
         Shader shader = null;
         if (i == 0) {
             head(canvas, f, f2, f3, "grid", th().BLUE, Strings.t("w.appgrid.h"), this.apps.isEmpty() ? null : String.valueOf(this.apps.size()));

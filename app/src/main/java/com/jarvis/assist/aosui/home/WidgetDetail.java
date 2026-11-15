@@ -68,7 +68,6 @@ public final class WidgetDetail {
         String str5;
         String str6;
         String str7;
-        r11 != null ? r11 : null;
         final FrameLayout frameLayout2;
         close(frameLayout);
         Context context2 = frameLayout.getContext();
