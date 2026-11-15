@@ -19,4 +19,9 @@ public class Voice {
     public static class Sink {
         public void on(String event, String data) { }
     }
+
+    public static void openVoiceSettings(android.content.Context ctx) { }
+    public interface Ev {
+        void on(String event, String data);
+    }
 }

@@ -1,3 +1,10 @@
 package com.jarvis.assist.aosui;
-/** Stub */
-public final class SafeMode {}
+import android.app.Activity;
+import android.view.View;
+
+public final class SafeMode {
+    public static View view(Activity activity) { return null; }
+    public static void set(Activity activity, boolean safe) { }
+    public static boolean isSafe(Activity activity) { return false; }
+    public static void drawn(Activity activity) { }
+}

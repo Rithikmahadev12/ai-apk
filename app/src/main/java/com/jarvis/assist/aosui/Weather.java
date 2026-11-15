@@ -30,4 +30,11 @@ public class Weather {
     static java.lang.String wapiCode(Object p0, Object p1) { return null; }
     static java.lang.String wmo(Object p0, Object p1) { return null; }
 
+
+    public interface Done {
+        void on(String event, String data);
+    }
+    public static java.lang.String status(android.content.Context ctx) { return null; }
+    public static void setKey(android.content.Context ctx, String key, String loc, Done d) { }
+    public static void clearKey(android.content.Context ctx, String key) { }
 }

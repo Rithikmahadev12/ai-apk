@@ -82,4 +82,8 @@ public class PhoneAI {
     static org.json.JSONObject overBudget(Object p0, Object p1, Object p2) { return null; }
     static org.json.JSONObject parse(Object p0, Object p1) { return null; }
 
+
+    public interface Done {
+        void on(String event, String data);
+    }
 }

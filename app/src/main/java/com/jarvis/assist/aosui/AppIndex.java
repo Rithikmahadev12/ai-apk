@@ -7,4 +7,5 @@ public class AppIndex {
     public static void off(Runnable r) { }
     public static java.lang.String cached() { return null; }
     public static void whenReady(Runnable r) { }
+    public static long now() { return 0; }
 }

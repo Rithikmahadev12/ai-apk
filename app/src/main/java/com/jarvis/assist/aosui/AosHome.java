@@ -1,4 +1,8 @@
 package com.jarvis.assist.aosui;
+import android.appwidget.AppWidgetHost;
+import android.appwidget.AppWidgetHostView;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
 import com.jarvis.assist.R;
 
 import android.app.Activity;
@@ -109,7 +113,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /* loaded from: /tmp/augmaos/classes.dex */
-public class AosHome extends Activity {
+public class AosHome extends Home {
     static final int AW_HOST = 2565;
     static final long IMG_MAX_BYTES = 41943040;
     static final long IMG_MAX_PX = 100000000;
@@ -483,7 +487,7 @@ public class AosHome extends Activity {
             awDone(this.awPending, i2 == -1);
             return;
         }
-        final Uri uri = null;
+        Uri uri = null;
         if (i == 7501) {
             final String str = this.expJson;
             final Consumer<String> consumer = this.expCb;
@@ -716,7 +720,7 @@ public class AosHome extends Activity {
         }
         if ((this.getClass().getName().contains("AppSettings"))) {
             slideDeclare();
-            this.sett = new NativeSettings(new Backend(this));
+            this.sett = new NativeSettings(new Backend((Home)this));
             setContentView(this.sett.view());
             applyPerf();
             String action = getIntent() != null ? getIntent().getAction() : null;
@@ -726,7 +730,7 @@ public class AosHome extends Activity {
             return;
         }
         if ((this.getClass().getName().contains("AppAssist"))) {
-            this.asst = new NativeAssist(new Backend(this));
+            this.asst = new NativeAssist(new Backend((Home)this));
             setContentView(this.asst.view());
             applyPerf();
             String action2 = getIntent() != null ? getIntent().getAction() : null;
@@ -742,7 +746,7 @@ public class AosHome extends Activity {
             return;
         }
         if ((this.getClass().getName().contains("AppBrief"))) {
-            this.brief = new BriefPage(new Backend(this));
+            this.brief = new BriefPage(new Backend((Home)this));
             setContentView(this.brief.view());
             applyPerf();
             this.brief.open();
@@ -750,7 +754,7 @@ public class AosHome extends Activity {
         }
         AppIndex.on(this.appsChanged);
         Crash.starting(this);
-        this.nat = new NativeHome(new Backend(this));
+        this.nat = new NativeHome(new Backend((Home)this));
         setContentView(this.nat.view());
         getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(this.firstDraw);
         if (Build.VERSION.SDK_INT >= 29) {
@@ -826,7 +830,7 @@ public class AosHome extends Activity {
                 }
             } catch (Exception e) {
             }
-            final String trim = charSequenceExtra == null ? "" : charSequenceExtra.toString().trim();
+            String trim = charSequenceExtra == null ? "" : charSequenceExtra.toString().trim();
             if (trim.isEmpty() && stringExtra != null) {
                 trim = stringExtra.trim();
             }
@@ -1122,7 +1126,7 @@ public class AosHome extends Activity {
     @Override // android.app.Activity
     protected void onStop() {
         Home front2 = front();
-        if (this.nat != null && (front2 == null || front2 == this)) {
+        if (this.nat != null && (front2 == null || front2 == (Home)this)) {
             this.nat.onStop();
         }
         if (this.nat != null) {
@@ -1295,7 +1299,7 @@ public class AosHome extends Activity {
     protected void onPause() {
         super.onPause();
         this.resumed = false;
-        if (front() == this) {
+        if (front() == (Home)this) {
             front.clear();
         }
         if (this.nat != null) {
@@ -1423,7 +1427,7 @@ public class AosHome extends Activity {
             this.vo.destroy();
         }
         this.vo = null;
-        if (front() == this) {
+        if (front() == (Home)this) {
             front.clear();
         }
         Memory.off(this.trim);
@@ -2491,7 +2495,7 @@ public class AosHome extends Activity {
                     c = 65535;
                     break;
             }
-            final String str2 = "android.settings.DISPLAY_SETTINGS";
+            String str2 = "android.settings.DISPLAY_SETTINGS";
             switch (c) {
                 case 0:
                     str2 = "android.settings.HOME_SETTINGS";
