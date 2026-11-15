@@ -21,15 +21,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      - name: Inject gradle.properties
+        run: |
+          echo "android.useAndroidX=true" > gradle.properties
+          echo "android.enableJetifier=true" >> gradle.properties
 
       - name: Grant execute permission to gradlew
         run: chmod +x gradlew
