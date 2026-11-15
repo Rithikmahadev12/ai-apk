@@ -21,22 +21,18 @@ import okhttp3.Response;
 
 /**
  * JarvisNet — all HTTP calls to the Jarvis backend.
- * Mirrors AugmaOS AiNet/Backend pattern from DEX.
  *
- * Endpoints used:
- *   GET  /api/profiles
- *   GET  /api/chat?userName=&message=
- *   POST /api/chat
- *   GET  /api/memory/:name
- *   GET  /api/reminders?userName=
- *   GET  /api/habits/due?userName=
- *   GET  /api/todos?userName=
- *   GET  /api/wallet/balances?userName=
- *   GET  /api/brief?userName=
+ * Actual server response shapes (from server.js):
+ *   GET /api/profiles        → { profiles: [{name, title, voiceAliases}] }
+ *   POST /api/chat           → { reply: "..." }
+ *   GET /api/memory/:user    → { memories: [{fact, savedAt}] }
+ *   GET /api/reminders       → { items: [{id, label, fireAt, isDue}] }
+ *   GET /api/habits/due      → { prompt: "string or null" }
+ *   GET /api/wallet/balances → { sol: 0.0, usdc: 0.0, ... }
  */
 public class JarvisNet {
 
-    private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static final MediaType JSON_TYPE = MediaType.get("application/json; charset=utf-8");
     private static final OkHttpClient CLIENT = new OkHttpClient.Builder()
         .connectTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
         .readTimeout(30,    java.util.concurrent.TimeUnit.SECONDS)
@@ -55,23 +51,31 @@ public class JarvisNet {
     // ── Data models ───────────────────────────────────────────────────────────
 
     public static class Profile {
-        public String name, role;
-        public boolean owner;
+        public String name  = "";
+        public String title = "";
+        public String role  = "user";
+        public boolean owner = false;
     }
 
     public static class Reminder {
-        public String id, label, fireAt;
-        public boolean isDue;
+        public String  id     = "";
+        public String  label  = "";
+        public String  fireAt = "";
+        public boolean isDue  = false;
     }
 
     public static class Todo {
-        public String id, text, status, addedAt;
+        public String id      = "";
+        public String text    = "";
+        public String status  = "pending";
+        public String addedAt = "";
     }
 
     public static class ChatMsg {
         public String role, content;
         public ChatMsg(String role, String content) {
-            this.role = role; this.content = content;
+            this.role = role;
+            this.content = content;
         }
     }
 
@@ -80,6 +84,12 @@ public class JarvisNet {
     private static String base() {
         String u = Store.serverUrl();
         return u.endsWith("/") ? u.substring(0, u.length() - 1) : u;
+    }
+
+    private static String baseOf(String serverUrl) {
+        return serverUrl.endsWith("/")
+            ? serverUrl.substring(0, serverUrl.length() - 1)
+            : serverUrl;
     }
 
     private static void bg(Runnable r) { POOL.execute(r); }
@@ -94,7 +104,7 @@ public class JarvisNet {
     }
 
     private static String post(String url, String body) throws Exception {
-        RequestBody rb = RequestBody.create(body, JSON);
+        RequestBody rb = RequestBody.create(body, JSON_TYPE);
         Request req = new Request.Builder().url(url).post(rb).build();
         try (Response resp = CLIENT.newCall(req).execute()) {
             if (!resp.isSuccessful()) throw new Exception("HTTP " + resp.code());
@@ -103,27 +113,35 @@ public class JarvisNet {
     }
 
     // ── Profiles ──────────────────────────────────────────────────────────────
+    // Server returns: { profiles: [{name, title, voiceAliases, role}] }
 
     public static void fetchProfiles(String serverUrl, Cb<List<Profile>> cb) {
         bg(() -> {
             try {
-                String url = (serverUrl.endsWith("/") ? serverUrl.substring(0, serverUrl.length()-1) : serverUrl)
-                    + "/api/profiles";
-                Request req = new Request.Builder().url(url).get().build();
-                String raw;
-                try (Response resp = CLIENT.newCall(req).execute()) {
-                    if (!resp.isSuccessful()) throw new Exception("HTTP " + resp.code());
-                    raw = resp.body() != null ? resp.body().string() : "[]";
+                String raw = get(baseOf(serverUrl) + "/api/profiles");
+
+                JSONArray arr;
+                try {
+                    JSONObject wrapper = new JSONObject(raw);
+                    if (wrapper.has("profiles")) {
+                        arr = wrapper.getJSONArray("profiles");
+                    } else {
+                        // fallback: bare array
+                        arr = new JSONArray(raw);
+                    }
+                } catch (Exception ex) {
+                    arr = new JSONArray(raw);
                 }
-                JSONArray arr = new JSONArray(raw);
+
                 List<Profile> list = new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject o = arr.getJSONObject(i);
-                    Profile p = new Profile();
-                    p.name  = o.optString("name", "");
-                    p.role  = o.optString("role", "user");
-                    p.owner = o.optBoolean("owner", false);
-                    list.add(p);
+                    Profile p  = new Profile();
+                    p.name  = o.optString("name",  "");
+                    p.title = o.optString("title", "");
+                    p.role  = o.optString("role",  "user");
+                    p.owner = p.role.equalsIgnoreCase("owner");
+                    if (!p.name.isEmpty()) list.add(p);
                 }
                 ui(() -> cb.ok(list));
             } catch (Exception e) {
@@ -133,31 +151,34 @@ public class JarvisNet {
     }
 
     // ── Chat ──────────────────────────────────────────────────────────────────
+    // Server returns: { reply: "..." }
 
     public static void sendChat(String userName, String message,
                                 List<ChatMsg> history, Cb<String> cb) {
         bg(() -> {
             try {
                 JSONObject body = new JSONObject();
-                body.put("userName", userName);
-                body.put("message", message);
+                body.put("userName",  userName);
+                body.put("message",   message);
+                body.put("sessionId", userName + "_android");
+                body.put("source",    "android");
 
                 if (history != null && !history.isEmpty()) {
                     JSONArray hist = new JSONArray();
                     for (ChatMsg m : history) {
                         JSONObject mo = new JSONObject();
-                        mo.put("role", m.role);
+                        mo.put("role",    m.role);
                         mo.put("content", m.content);
                         hist.put(mo);
                     }
                     body.put("history", hist);
                 }
 
-                String raw = post(base() + "/api/chat", body.toString());
-                JSONObject resp = new JSONObject(raw);
-                String reply = resp.optString("reply",
-                    resp.optString("message",
-                    resp.optString("response", raw)));
+                String raw  = post(base() + "/api/chat", body.toString());
+                JSONObject r = new JSONObject(raw);
+                String reply = r.optString("reply",
+                               r.optString("message",
+                               r.optString("response", raw)));
                 ui(() -> cb.ok(reply));
             } catch (Exception e) {
                 ui(() -> cb.err(e.getMessage()));
@@ -166,6 +187,7 @@ public class JarvisNet {
     }
 
     // ── Memory ────────────────────────────────────────────────────────────────
+    // Server returns: { memories: [{fact, savedAt}] }
 
     public static void fetchMemory(String userName, Cb<List<String>> cb) {
         bg(() -> {
@@ -174,10 +196,17 @@ public class JarvisNet {
                 JSONObject obj = new JSONObject(raw);
                 List<String> items = new ArrayList<>();
 
-                // Handle both array and object responses
                 if (obj.has("memories")) {
                     JSONArray arr = obj.getJSONArray("memories");
-                    for (int i = 0; i < arr.length(); i++) items.add(arr.getString(i));
+                    for (int i = 0; i < arr.length(); i++) {
+                        Object entry = arr.get(i);
+                        if (entry instanceof JSONObject) {
+                            // {fact: "...", savedAt: "..."}
+                            items.add(((JSONObject) entry).optString("fact", entry.toString()));
+                        } else {
+                            items.add(entry.toString());
+                        }
+                    }
                 } else if (obj.has("data")) {
                     Object d = obj.get("data");
                     if (d instanceof JSONArray) {
@@ -186,8 +215,6 @@ public class JarvisNet {
                     } else {
                         items.add(d.toString());
                     }
-                } else {
-                    items.add(raw);
                 }
                 ui(() -> cb.ok(items));
             } catch (Exception e) {
@@ -197,20 +224,31 @@ public class JarvisNet {
     }
 
     // ── Reminders ─────────────────────────────────────────────────────────────
+    // Server returns: { items: [{id, label, fireAt, isDue}] }
 
     public static void fetchReminders(String userName, Cb<List<Reminder>> cb) {
         bg(() -> {
             try {
                 String raw = get(base() + "/api/reminders?userName=" + userName);
-                JSONArray arr = new JSONArray(raw);
+                JSONObject wrapper = new JSONObject(raw);
+
+                JSONArray arr;
+                if (wrapper.has("items")) {
+                    arr = wrapper.getJSONArray("items");
+                } else if (wrapper.has("reminders")) {
+                    arr = wrapper.getJSONArray("reminders");
+                } else {
+                    arr = new JSONArray(raw);
+                }
+
                 List<Reminder> list = new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject o = arr.getJSONObject(i);
-                    Reminder r = new Reminder();
-                    r.id     = o.optString("id", String.valueOf(i));
-                    r.label  = o.optString("label", o.optString("text", o.optString("title", "")));
+                    Reminder r   = new Reminder();
+                    r.id     = o.optString("id",     String.valueOf(i));
+                    r.label  = o.optString("label",  o.optString("text", o.optString("title", "")));
                     r.fireAt = o.optString("fireAt", o.optString("time", ""));
-                    r.isDue  = o.optBoolean("isDue", o.optBoolean("due", false));
+                    r.isDue  = o.optBoolean("isDue",  o.optBoolean("due", false));
                     if (!r.label.isEmpty()) list.add(r);
                 }
                 ui(() -> cb.ok(list));
@@ -221,22 +259,39 @@ public class JarvisNet {
     }
 
     // ── Habits ────────────────────────────────────────────────────────────────
+    // Server returns: { prompt: "string or null" }
 
     public static void fetchHabits(String userName, Cb<List<String>> cb) {
         bg(() -> {
             try {
                 String raw = get(base() + "/api/habits/due?userName=" + userName);
-                JSONArray arr = new JSONArray(raw);
                 List<String> list = new ArrayList<>();
-                for (int i = 0; i < arr.length(); i++) {
-                    Object item = arr.get(i);
-                    if (item instanceof JSONObject) {
-                        JSONObject o = (JSONObject) item;
-                        list.add(o.optString("name", o.optString("label", o.toString())));
-                    } else {
-                        list.add(item.toString());
+
+                try {
+                    JSONObject obj = new JSONObject(raw);
+                    if (obj.has("prompt")) {
+                        String prompt = obj.optString("prompt", "");
+                        if (!prompt.isEmpty() && !prompt.equals("null")) {
+                            list.add(prompt);
+                        }
+                    } else if (obj.has("habits")) {
+                        JSONArray arr = obj.getJSONArray("habits");
+                        for (int i = 0; i < arr.length(); i++) {
+                            Object item = arr.get(i);
+                            if (item instanceof JSONObject) {
+                                list.add(((JSONObject) item).optString("name",
+                                         ((JSONObject) item).optString("label", item.toString())));
+                            } else {
+                                list.add(item.toString());
+                            }
+                        }
                     }
+                } catch (Exception ex) {
+                    // bare array fallback
+                    JSONArray arr = new JSONArray(raw);
+                    for (int i = 0; i < arr.length(); i++) list.add(arr.getString(i));
                 }
+
                 ui(() -> cb.ok(list));
             } catch (Exception e) {
                 ui(() -> cb.err(e.getMessage()));
@@ -250,14 +305,28 @@ public class JarvisNet {
         bg(() -> {
             try {
                 String raw = get(base() + "/api/todos?userName=" + userName);
-                JSONArray arr = new JSONArray(raw);
+
+                JSONArray arr;
+                try {
+                    JSONObject wrapper = new JSONObject(raw);
+                    if (wrapper.has("todos")) {
+                        arr = wrapper.getJSONArray("todos");
+                    } else if (wrapper.has("items")) {
+                        arr = wrapper.getJSONArray("items");
+                    } else {
+                        arr = new JSONArray(raw);
+                    }
+                } catch (Exception ex) {
+                    arr = new JSONArray(raw);
+                }
+
                 List<Todo> list = new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject o = arr.getJSONObject(i);
-                    Todo t = new Todo();
-                    t.id      = o.optString("id", String.valueOf(i));
-                    t.text    = o.optString("text", o.optString("label", ""));
-                    t.status  = o.optString("status", "pending");
+                    Todo t       = new Todo();
+                    t.id      = o.optString("id",      String.valueOf(i));
+                    t.text    = o.optString("text",    o.optString("label", ""));
+                    t.status  = o.optString("status",  "pending");
                     t.addedAt = o.optString("addedAt", o.optString("createdAt", ""));
                     if (!t.text.isEmpty()) list.add(t);
                 }
@@ -273,7 +342,7 @@ public class JarvisNet {
     public static void fetchWallet(String userName, Cb<JSONObject> cb) {
         bg(() -> {
             try {
-                String raw = get(base() + "/api/wallet/balances?userName=" + userName);
+                String raw     = get(base() + "/api/wallet/balances?userName=" + userName);
                 JSONObject obj = new JSONObject(raw);
                 ui(() -> cb.ok(obj));
             } catch (Exception e) {
@@ -287,7 +356,7 @@ public class JarvisNet {
     public static void fetchBrief(String userName, Cb<JSONObject> cb) {
         bg(() -> {
             try {
-                String raw = get(base() + "/api/brief?userName=" + userName);
+                String raw     = get(base() + "/api/brief?userName=" + userName);
                 JSONObject obj = new JSONObject(raw);
                 ui(() -> cb.ok(obj));
             } catch (Exception e) {
@@ -301,8 +370,7 @@ public class JarvisNet {
     public static void ping(String serverUrl, Cb<Boolean> cb) {
         bg(() -> {
             try {
-                String u = (serverUrl.endsWith("/") ? serverUrl.substring(0, serverUrl.length()-1) : serverUrl)
-                    + "/api/profiles";
+                String u = baseOf(serverUrl) + "/api/profiles";
                 Request req = new Request.Builder().url(u).get()
                     .addHeader("Connection", "close").build();
                 try (Response resp = CLIENT.newCall(req).execute()) {
