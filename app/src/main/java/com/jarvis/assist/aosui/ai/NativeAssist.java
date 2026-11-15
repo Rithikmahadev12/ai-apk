@@ -8,6 +8,8 @@ public class NativeAssist {
     public void onShare() { }
     public void onTalk() { }
     public void onConfig() { }
+    public void onPerm() { }
+    public void onVoiceEvent(String s1, String s2) { }
     public void debug(String s) { }
     public void ask(String s, Object p1) { }
     public void trim(int i, int i2) { }
@@ -20,6 +22,7 @@ public class NativeAssist {
     public void cancel(Object p0) { }
     public android.app.AlarmManager.AlarmClockInfo getNextAlarmClock() { return null; }
     public void setInexactRepeating(Object p0, Object p1, Object p2, Object p3) { }
+    public void onPowerConnected() { }
     protected static void _s566435952(Object p0, Object p1, Object p2) { }
     protected java.lang.Object _s50344240() { return null; }
     protected java.lang.Object _s1684172129() { return null; }
@@ -29,5 +32,4 @@ public class NativeAssist {
     public java.lang.String _s923629879(Object p0, Object p1, Object p2, Object p3) { return null; }
     public java.lang.Object _s287294501() { return null; }
     public android.view.View _s1466203910(Object p0) { return null; }
-    public void onPowerConnected() { }
 }
