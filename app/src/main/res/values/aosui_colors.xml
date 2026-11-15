@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="aosui_bg">#FF050C10</color>
+    <color name="aosui_card">#FF0D1A24</color>
+    <color name="aosui_ink">#FFE8F4FF</color>
+    <color name="aosui_teal">#FF4BD8FA</color>
+    <color name="aosui_orange">#FFFF7A26</color>
+    <color name="aosui_red">#FFE03535</color>
+    <color name="aosui_blue">#FF3A8EFF</color>
+    <color name="aosui_dim">#FF4A6680</color>
+</resources>
