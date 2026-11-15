@@ -55,7 +55,7 @@ public class PhoneAI {
     static void lambda$post$2(Object p0) { }
     static void lambda$refreshModels$10(Object p0, Object p1, Object p2) { }
     static void lambda$setKey$11(Object p0, Object p1, Object p2) { }
-    static com.jarvis.assist.aosui.ai.KeyCheck$Resp lambda$static$8(Object p0, Object p1) { return null; }
+    static Object lambda$static$8(Object p0, Object p1) { return null; }
     static void lambda$static$9(Object p0) { }
     static boolean lambda$warm$3(Object p0, Object p1) { return false; }
     static void lambda$warm$4(Object p0) { }

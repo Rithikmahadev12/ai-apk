@@ -211,7 +211,7 @@ public final class Store {
             webView.getSettings().setDomStorageEnabled(true);
             webView.getSettings().setAllowFileAccess(true);
             webView.getSettings().setAllowContentAccess(false);
-            webView.addJavascriptInterface(new AnonymousClass1(zArr, runnable, intConsumer), "Mig");
+            webView.addJavascriptInterface(new StoreAnon1(zArr, runnable, intConsumer), "Mig");
             webView.loadUrl("file:///android_asset/migrate.html");
             main.postDelayed(new Runnable() { // from class: com.jarvis.assist.aosui.core.Store$$ExternalSyntheticLambda3
                 @Override // java.lang.Runnable
@@ -241,12 +241,12 @@ public final class Store {
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: com.jarvis.assist.aosui.core.Store$1, reason: invalid class name */
     /* loaded from: /tmp/augmaos/classes.dex */
-    public class AnonymousClass1 {
+    public class StoreAnon1 {
         final /* synthetic */ IntConsumer val$done;
         final /* synthetic */ Runnable val$end;
         final /* synthetic */ boolean[] val$fin;
 
-        AnonymousClass1(boolean[] zArr, Runnable runnable, IntConsumer intConsumer) {
+        StoreAnon1(boolean[] zArr, Runnable runnable, IntConsumer intConsumer) {
             this.val$fin = zArr;
             this.val$end = runnable;
             this.val$done = intConsumer;
@@ -277,7 +277,7 @@ public final class Store {
             handler.post(new Runnable() { // from class: com.jarvis.assist.aosui.core.Store$1$$ExternalSyntheticLambda0
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Store.AnonymousClass1.lambda$done$0(zArr, str, runnable, intConsumer);
+                    Store.StoreAnon1.lambda$done$0(zArr, str, runnable, intConsumer);
                 }
             });
         }

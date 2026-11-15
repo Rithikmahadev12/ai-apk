@@ -1,5 +1,7 @@
 package com.jarvis.assist.aosui;
 
+import android.content.Context;
+
 public class Voice {
     public Sink sink = new Sink();
     public Voice() { }
@@ -12,16 +14,12 @@ public class Voice {
     public void stop() { }
     public void cancel() { }
     public void speak(Object arr, boolean b) { }
+    public static void openVoiceSettings(Context ctx) { }
 
     public interface Ev {
         void on(String event, String data);
     }
     public static class Sink {
         public void on(String event, String data) { }
-    }
-
-    public static void openVoiceSettings(android.content.Context ctx) { }
-    public interface Ev {
-        void on(String event, String data);
     }
 }

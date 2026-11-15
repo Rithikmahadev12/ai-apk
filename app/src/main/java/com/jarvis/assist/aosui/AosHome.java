@@ -147,7 +147,7 @@ public class AosHome extends Home {
     static final ArrayList<WeakReference<Home>> others = new ArrayList<>();
     static final String TOK = Long.toHexString(new SecureRandom().nextLong());
     final HashMap<Integer, AppWidgetHostView> awv = new HashMap<>();
-    final ViewTreeObserver.OnDrawListener firstDraw = new AnonymousClass1();
+    final ViewTreeObserver.OnDrawListener firstDraw = new FirstDrawListener();
     final Runnable appsChanged = new Runnable() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda6
         @Override // java.lang.Runnable
         public final void run() {
@@ -781,10 +781,10 @@ public class AosHome extends Home {
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: com.jarvis.assist.aosui.Home$1, reason: invalid class name */
     /* loaded from: /tmp/augmaos/classes.dex */
-    public class AnonymousClass1 implements ViewTreeObserver.OnDrawListener {
+    public class FirstDrawListener implements ViewTreeObserver.OnDrawListener {
         boolean done;
 
-        AnonymousClass1() {
+        FirstDrawListener() {
         }
 
         /* JADX INFO: Access modifiers changed from: package-private */
