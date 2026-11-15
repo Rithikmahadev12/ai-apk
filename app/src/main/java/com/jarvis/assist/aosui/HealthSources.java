@@ -18,4 +18,6 @@ public class HealthSources {
     public static java.lang.String status(android.content.Context ctx) { return null; }
     public static void setPref(android.content.Context ctx, String pref) { }
     public static void wipe(android.content.Context ctx) { }
+    public static void disconnect(android.content.Context ctx, String src) { }
+    public static void today2(android.content.Context ctx, PhoneAI.Done done) { }
 }

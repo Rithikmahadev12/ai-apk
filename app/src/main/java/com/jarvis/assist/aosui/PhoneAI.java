@@ -86,4 +86,6 @@ public class PhoneAI {
     public interface Done {
         void on(String event, String data);
     }
+    public static String status(android.content.Context ctx) { return null; }
+    public static void setOrder(android.content.Context ctx, String order) { }
 }

@@ -429,7 +429,7 @@ public class AosHome extends Home {
                 Context context2 = context;
                 Uri uri2 = uri;
                 boolean z = contains;
-                Toast.makeText(context2, uri2.getHost().toUpperCase(Locale.ROOT) + (r3 ? " connected" : " sign-in failed"), 0).show();
+                Toast.makeText(context2, uri2.getHost().toUpperCase(Locale.ROOT) + (z ? " connected" : " sign-in failed"), 0).show();
             }
         });
         try {
@@ -718,6 +718,7 @@ public class AosHome extends Home {
                 others.add(new java.lang.ref.WeakReference<>(this));
             }
         }
+        boolean r0 = false;
         if ((this.getClass().getName().contains("AppSettings"))) {
             slideDeclare();
             this.sett = new NativeSettings(new Backend((Home)this));
@@ -799,7 +800,7 @@ public class AosHome extends Home {
                 return;
             }
             this.done = true;
-            Crash.drawn(Home.this);
+            Crash.drawn(AosHome.this);
             final View decorView = getWindow().getDecorView();
             decorView.post(new Runnable() { // from class: com.jarvis.assist.aosui.Home$1$$ExternalSyntheticLambda0
                 @Override // java.lang.Runnable
@@ -1755,9 +1756,9 @@ public class AosHome extends Home {
         /* renamed from: lambda$voiceSettings$9$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m59lambda$voiceSettings$9$comaugmaosoHome$Phone(String str) {
             if ("download".equals(str)) {
-                voice().downloadOffline(Home.this);
+                voice().downloadOffline(AosHome.this);
             } else {
-                Voice.openVoiceSettings(Home.this, str);
+                Voice.openVoiceSettings(AosHome.this, str);
             }
         }
 
@@ -2085,9 +2086,9 @@ public class AosHome extends Home {
                 String string = Settings.Secure.getString(getContentResolver(), "enabled_notification_listeners");
                 AppOpsManager appOpsManager = (AppOpsManager) getSystemService(AppOpsManager.class);
                 int unsafeCheckOpNoThrow = appOpsManager != null ? Build.VERSION.SDK_INT >= 29 ? appOpsManager.unsafeCheckOpNoThrow("android:get_usage_stats", Process.myUid(), getPackageName()) : appOpsManager.checkOpNoThrow("android:get_usage_stats", Process.myUid(), getPackageName()) : 3;
-                JSONArray optJSONArray = new JSONObject(Health.perm(Home.this)).optJSONArray("granted");
+                JSONArray optJSONArray = new JSONObject(Health.perm(AosHome.this)).optJSONArray("granted");
                 boolean z = true;
-                JSONObject put = new JSONObject().put("calendar", has("android.permission.READ_CALENDAR")).put("contacts", has("android.permission.READ_CONTACTS")).put("location", Loc.ok(Home.this)).put("locFix", !Loc.get(Home.this).isEmpty()).put("mic", has("android.permission.RECORD_AUDIO")).put("notifAccess", string != null && string.contains(getPackageName())).put("usage", unsafeCheckOpNoThrow == 0).put("health", optJSONArray != null && optJSONArray.length() > 0).put("healthAvailable", Health.available(Home.this));
+                JSONObject put = new JSONObject().put("calendar", has("android.permission.READ_CALENDAR")).put("contacts", has("android.permission.READ_CONTACTS")).put("location", Loc.ok(AosHome.this)).put("locFix", !Loc.get(AosHome.this).isEmpty()).put("mic", has("android.permission.RECORD_AUDIO")).put("notifAccess", string != null && string.contains(getPackageName())).put("usage", unsafeCheckOpNoThrow == 0).put("health", optJSONArray != null && optJSONArray.length() > 0).put("healthAvailable", Health.available(AosHome.this));
                 if (optJSONArray == null || optJSONArray.length() <= 0) {
                     z = false;
                 }
@@ -2098,7 +2099,7 @@ public class AosHome extends Home {
         }
 
         String healthGate(boolean z) {
-            return OnboardModel.healthGate(Build.VERSION.SDK_INT, Health.available(Home.this), z);
+            return OnboardModel.healthGate(Build.VERSION.SDK_INT, Health.available(AosHome.this), z);
         }
 
         /* JADX INFO: Access modifiers changed from: package-private */
@@ -2211,7 +2212,7 @@ public class AosHome extends Home {
                         return;
                     case 6:
                         String healthGate = healthGate(false);
-                        if (!Health.available(Home.this) || "unsupported".equals(healthGate)) {
+                        if (!Health.available(AosHome.this) || "unsupported".equals(healthGate)) {
                             openSettings("health");
                             return;
                         } else {
@@ -2303,7 +2304,7 @@ public class AosHome extends Home {
         /* renamed from: lambda$openAsk$15$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m43lambda$openAsk$15$comaugmaosoHome$Phone(String str) {
             try {
-                Home home = Home.this;
+                Home home = AosHome.this;
                 Intent className = new Intent().setClassName(getPackageName(), getPackageName() + ".Apps$AppAssist");
                 if (str == null) {
                     str = "";
@@ -2606,7 +2607,7 @@ public class AosHome extends Home {
             try {
                 ClipboardManager clipboardManager = (ClipboardManager) getSystemService(ClipboardManager.class);
                 if (clipboardManager != null && clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0) {
-                    CharSequence coerceToText = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(Home.this);
+                    CharSequence coerceToText = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(AosHome.this);
                     String trim = coerceToText == null ? "" : coerceToText.toString().trim();
                     if (trim.matches("(AIza|sk-ant-|sk-or-|gsk_|sk-)[0-9A-Za-z_\\-]{20,}")) {
                         return "";
@@ -2713,7 +2714,7 @@ public class AosHome extends Home {
             try {
                 ClipboardManager clipboardManager = (ClipboardManager) getSystemService(ClipboardManager.class);
                 if (clipboardManager != null && clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0) {
-                    CharSequence coerceToText = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(Home.this);
+                    CharSequence coerceToText = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(AosHome.this);
                     String trim = coerceToText == null ? "" : coerceToText.toString().trim();
                     if (!trim.isEmpty() && trim.length() <= 600 && !trim.matches("(?s).*\\s.*") && !trim.contains("://")) {
                         return "ai".equals(str) ? Keys.plausible(trim) ? trim : "" : trim.length() >= 16 ? trim : "";
@@ -2752,8 +2753,8 @@ public class AosHome extends Home {
         /* renamed from: lambda$openSettings$23$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m46lambda$openSettings$23$comaugmaosoHome$Phone(String str) {
             try {
-                Home home = Home.this;
-                Intent intent = new Intent(Home.this, (Class<?>) Apps.AppSettings.class);
+                Home home = AosHome.this;
+                Intent intent = new Intent(AosHome.this, (Class<?>) Apps.AppSettings.class);
                 if (str == null) {
                     str = "";
                 }
@@ -2776,7 +2777,7 @@ public class AosHome extends Home {
         /* JADX INFO: Access modifiers changed from: package-private */
         /* renamed from: lambda$openApp$24$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m41lambda$openApp$24$comaugmaosoHome$Phone() {
-            GetVault.open(Home.this);
+            GetVault.open(AosHome.this);
         }
 
         public void openApp(final String str) {
@@ -2883,11 +2884,11 @@ public class AosHome extends Home {
         }
 
         public String media() {
-            return Media.state(Home.this);
+            return Media.state(AosHome.this);
         }
 
         public boolean mediaAct(String str, String str2) {
-            return Media.act(Home.this, str, str2);
+            return Media.act(AosHome.this, str, str2);
         }
 
         public void hapticFx(String str) {
@@ -2918,7 +2919,7 @@ public class AosHome extends Home {
         }
 
         public String healthSources() {
-            return HealthSources.status(Home.this);
+            return HealthSources.status(AosHome.this);
         }
 
         public void healthConnect(final String str, final String str2, final Consumer<String> consumer) {
@@ -3043,11 +3044,11 @@ public class AosHome extends Home {
         }
 
         public String aiHasKey() {
-            return PhoneAI.status(Home.this);
+            return PhoneAI.status(AosHome.this);
         }
 
         public void aiSetKey(String str, final Consumer<String> consumer) {
-            PhoneAI.setKey(Home.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda19
+            PhoneAI.setKey(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda19
                 @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m21lambda$aiSetKey$32$comaugmaosoHome$Phone(consumer, str2);
@@ -3062,11 +3063,11 @@ public class AosHome extends Home {
         }
 
         public void aiClearKey() {
-            PhoneAI.clear(Home.this);
+            PhoneAI.clear(AosHome.this);
         }
 
         public void geminiSetKey(String str, final Consumer<String> consumer) {
-            PhoneAI.geminiSetKey(Home.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda29
+            PhoneAI.geminiSetKey(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda29
                 @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m26lambda$geminiSetKey$33$comaugmaosoHome$Phone(consumer, str2);
@@ -3081,11 +3082,11 @@ public class AosHome extends Home {
         }
 
         public void geminiClearKey() {
-            PhoneAI.geminiClear(Home.this);
+            PhoneAI.geminiClear(AosHome.this);
         }
 
         public void aiSetOrder(String str) {
-            PhoneAI.setOrder(Home.this, str);
+            PhoneAI.setOrder(AosHome.this, str);
         }
 
         /* JADX INFO: Access modifiers changed from: package-private */
@@ -3095,7 +3096,7 @@ public class AosHome extends Home {
         }
 
         public void oaiSet(String str, final Consumer<String> consumer) {
-            PhoneAI.oaiSet(Home.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda17
+            PhoneAI.oaiSet(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda17
                 @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m40lambda$oaiSet$34$comaugmaosoHome$Phone(consumer, str2);
@@ -3110,7 +3111,7 @@ public class AosHome extends Home {
         }
 
         public void oaiModels(String str, final Consumer<String> consumer) {
-            PhoneAI.oaiModels(Home.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda41
+            PhoneAI.oaiModels(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda41
                 @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m39lambda$oaiModels$35$comaugmaosoHome$Phone(consumer, str2);
@@ -3119,7 +3120,7 @@ public class AosHome extends Home {
         }
 
         public void oaiClear() {
-            PhoneAI.oaiClear(Home.this);
+            PhoneAI.oaiClear(AosHome.this);
         }
 
         public String weatherStatus() {
@@ -3147,7 +3148,7 @@ public class AosHome extends Home {
 
         boolean adminOn() {
             DevicePolicyManager devicePolicyManager = (DevicePolicyManager) getSystemService("device_policy");
-            return devicePolicyManager != null && devicePolicyManager.isAdminActive(new ComponentName(Home.this, (Class<?>) LockAdmin.class));
+            return devicePolicyManager != null && devicePolicyManager.isAdminActive(new ComponentName(AosHome.this, (Class<?>) LockAdmin.class));
         }
 
         /* JADX WARN: Removed duplicated region for block: B:10:0x003d  */
@@ -3158,65 +3159,34 @@ public class AosHome extends Home {
             To view partially-correct add '--show-bad-code' argument
         */
         public java.lang.String lockState() {
-            /*
-                r12 = this;
-                java.lang.String r0 = "service"
-                java.lang.String r1 = ""
-                java.lang.String r2 = "admin"
-                boolean r3 = com.jarvis.assist.aosui.LockService.ready()     // Catch: org.json.JSONException -> L5e
-                boolean r4 = r12.adminOn()     // Catch: org.json.JSONException -> L5e
-                com.jarvis.assist.aosui.Home r5 = com.jarvis.assist.aosui.Home.this     // Catch: org.json.JSONException -> L5e
-                android.content.SharedPreferences r5 = r5.prefs     // Catch: org.json.JSONException -> L5e
-                java.lang.String r6 = "aos.lockvia"
-                java.lang.String r5 = r5.getString(r6, r1)     // Catch: org.json.JSONException -> L5e
-                org.json.JSONObject r6 = new org.json.JSONObject     // Catch: org.json.JSONException -> L5e
-                r6.<init>()     // Catch: org.json.JSONException -> L5e
-                java.lang.String r7 = "ready"
-                r8 = 0
-                r9 = 1
-                if (r3 != 0) goto L28
-                if (r4 == 0) goto L26
-                goto L28
-            L26:
-                r10 = r8
-                goto L29
-            L28:
-                r10 = r9
-            L29:
-                org.json.JSONObject r6 = r6.put(r7, r10)     // Catch: org.json.JSONException -> L5e
-                org.json.JSONObject r6 = r6.put(r0, r3)     // Catch: org.json.JSONException -> L5e
-                org.json.JSONObject r6 = r6.put(r2, r4)     // Catch: org.json.JSONException -> L5e
-                java.lang.String r7 = "canService"
-                int r10 = android.os.Build.VERSION.SDK_INT     // Catch: org.json.JSONException -> L5e
-                r11 = 28
-                if (r10 < r11) goto L3e
-                r8 = r9
-            L3e:
-                org.json.JSONObject r6 = r6.put(r7, r8)     // Catch: org.json.JSONException -> L5e
-                java.lang.String r7 = "via"
-                boolean r5 = r2.equals(r5)     // Catch: org.json.JSONException -> L5e
-                if (r5 == 0) goto L4e
-                if (r4 == 0) goto L4e
-            L4c:
-                r0 = r2
-                goto L55
-            L4e:
-                if (r3 == 0) goto L51
-                goto L55
-            L51:
-                if (r4 == 0) goto L54
-                goto L4c
-            L54:
-                r0 = r1
-            L55:
-                org.json.JSONObject r0 = r6.put(r7, r0)     // Catch: org.json.JSONException -> L5e
-                java.lang.String r0 = r0.toString()     // Catch: org.json.JSONException -> L5e
-                return r0
-            L5e:
-                r0 = move-exception
-                java.lang.String r0 = "{}"
-                return r0
-            */
+            try {
+                boolean serviceReady = com.jarvis.assist.aosui.LockService.ready();
+                boolean isAdmin = adminOn();
+                android.content.SharedPreferences sp = AosHome.this.prefs;
+                String via = sp != null ? sp.getString("aos.lockvia", "") : "";
+                boolean ready = serviceReady || isAdmin;
+                boolean canService = android.os.Build.VERSION.SDK_INT >= 28;
+                boolean viaAdmin = "admin".equals(via) && isAdmin;
+                String resolvedVia;
+                if (viaAdmin) {
+                    resolvedVia = "admin";
+                } else if (serviceReady) {
+                    resolvedVia = "service";
+                } else if (isAdmin) {
+                    resolvedVia = "admin";
+                } else {
+                    resolvedVia = "";
+                }
+                return new org.json.JSONObject()
+                    .put("ready", ready)
+                    .put("service", serviceReady)
+                    .put("admin", isAdmin)
+                    .put("canService", canService)
+                    .put("via", resolvedVia)
+                    .toString();
+            } catch (org.json.JSONException e) {
+                return "{}";
+            }
             throw new UnsupportedOperationException("Method not decompiled: com.jarvis.assist.aosui.Home.Phone.lockState():java.lang.String");
         }
 
@@ -3399,13 +3369,13 @@ public class AosHome extends Home {
                 float f = getResources().getDisplayMetrics().density;
                 for (AppWidgetProviderInfo appWidgetProviderInfo : awm().getInstalledProviders()) {
                     try {
-                        drawable = appWidgetProviderInfo.loadPreviewImage(Home.this, getResources().getDisplayMetrics().densityDpi);
+                        drawable = appWidgetProviderInfo.loadPreviewImage(AosHome.this, getResources().getDisplayMetrics().densityDpi);
                     } catch (Throwable th) {
                         drawable = null;
                     }
                     if (drawable == null) {
                         try {
-                            drawable = appWidgetProviderInfo.loadIcon(Home.this, getResources().getDisplayMetrics().densityDpi);
+                            drawable = appWidgetProviderInfo.loadIcon(AosHome.this, getResources().getDisplayMetrics().densityDpi);
                         } catch (Throwable th2) {
                         }
                     }
@@ -3496,7 +3466,7 @@ public class AosHome extends Home {
                         }
                         return;
                     } catch (Throwable th2) {
-                        Home home = Home.this;
+                        Home home = AosHome.this;
                         if (i != 0) {
                             home.awDone(i, false);
                             return;
@@ -3570,11 +3540,11 @@ public class AosHome extends Home {
         }
 
         public String assistantInfo() {
-            return PhoneAssist.info(Home.this);
+            return PhoneAssist.info(AosHome.this);
         }
 
         public boolean openAssistant(String str, boolean z) {
-            boolean open = PhoneAssist.open(Home.this, str, z);
+            boolean open = PhoneAssist.open(AosHome.this, str, z);
             if (!open) {
                 runOnUiThread(new Runnable() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda11
                     @Override // java.lang.Runnable
@@ -3590,7 +3560,7 @@ public class AosHome extends Home {
         /* renamed from: lambda$openAssistant$44$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m44lambda$openAssistant$44$comaugmaosoHome$Phone() {
             try {
-                Toast.makeText(Home.this, "No assistant app on this phone can take that", 0).show();
+                Toast.makeText(AosHome.this, "No assistant app on this phone can take that", 0).show();
             } catch (Exception e) {
             }
         }

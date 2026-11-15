@@ -173,4 +173,7 @@ public abstract class Home extends Activity {
         public void notifList(Consumer<String> c) { }
         public void fetchPage(String s, Consumer<String> c) { }
     }
+
+    public static void noteNotif(String s) { }
+    public static void onApps() { }
 }

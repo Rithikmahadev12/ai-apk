@@ -22,4 +22,8 @@ public class Voice {
     public static class Sink {
         public void on(String event, String data) { }
     }
+    public void recogInfo(PhoneAI.Done done) { }
+    public void voices(PhoneAI.Done done) { }
+    public void downloadOffline(android.content.Context ctx) { }
+    public static String[] GEM_VOICES = new String[]{};
 }
