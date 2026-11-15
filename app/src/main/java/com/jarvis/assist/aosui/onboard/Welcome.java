@@ -1099,7 +1099,7 @@ public final class Welcome extends FrameLayout {
         String str;
         boolean z;
         TextView chip;
-        ?? r16;
+        r16 != null ? r16 : null;
         String str2;
         boolean z2;
         final Welcome welcome = this;

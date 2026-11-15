@@ -725,7 +725,7 @@ public final class BackLayer extends View {
         backLayer4.arc(canvas, f30, f31, f29, 278.0f, 304.0f, Flip7.G4, 1.0f);
         backLayer4.arcText(canvas, f30, f31, f29, 270.0f, Strings.t("adv.quick"), backLayer4.t65, -8549994);
         int i7 = z4 ? 1 : 0;
-        ?? r15 = z4;
+        if (r15 == null) r15 = z4;
         while (i7 < geo.nq2 && i7 < homeData2.qs2.size()) {
             float f32 = f31;
             char c = r15;

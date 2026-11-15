@@ -2140,7 +2140,7 @@ public final class AppsDrawer extends FrameLayout {
             char c3;
             int i;
             char c4;
-            ?? r21;
+            r21 != null ? r21 : null;
             float f2;
             HomeRules.App app;
             int i2;

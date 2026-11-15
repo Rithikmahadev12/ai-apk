@@ -150,7 +150,7 @@ public class AosHome extends Activity {
         }
     };
 
-    public Home() {
+    public AosHome() {
         this.thermal = Build.VERSION.SDK_INT >= 29 ? new PowerManager.OnThermalStatusChangedListener() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda7
             @Override // android.os.PowerManager.OnThermalStatusChangedListener
             public final void onThermalStatusChanged(int i) {

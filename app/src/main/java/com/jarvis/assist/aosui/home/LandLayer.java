@@ -382,7 +382,7 @@ public final class LandLayer extends View {
             landLayer.wedge(canvas2, i3, (landLayer.h.brief || i3 != landLayer.h.active) ? z2 : true);
             i3++;
         }
-        ?? r1 = z2;
+        if (r1 == null) r1 = z2;
         while (r1 < geo.nd) {
             float f10 = geo.dkA[r1][2];
             HomeData.Entry entry2 = homeData.dock.get(r1);
@@ -450,7 +450,7 @@ public final class LandLayer extends View {
         float f4 = geo.RO;
         ring(canvas, f, f2, f4 + 40.0f, ma(theme.LINE, 0.4f), 1.0f);
         ring(canvas, f, f2, f4 + 70.0f, ma(theme.LINE, 0.22f), 1.0f);
-        ?? r14 = 0;
+        if (r14 == null) r14 = 0;
         int i = 0;
         while (true) {
             c = 1;
