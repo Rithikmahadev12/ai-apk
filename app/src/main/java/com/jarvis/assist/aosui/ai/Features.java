@@ -1,16 +1,17 @@
 package com.jarvis.assist.aosui.ai;
 
 public class Features {
-
     public Features(Object p0) { }
+    public Features(Object p0, Object p1) { }
+    public Features(Object p0, Object p1, Object p2) { }
     static org.json.JSONObject J(Object p0) { return null; }
     static org.json.JSONArray JA(Object p0) { return null; }
     static java.lang.String[] a(Object p0) { return null; }
-    static com.jarvis.assist.aosui.ai.Features$F auto(Object p0, Object p1, Object p2, Object p3) { return null; }
+    static Features.F auto(Object p0, Object p1, Object p2, Object p3) { return null; }
     public static java.util.List chips(Object p0, Object p1) { return null; }
     public static java.lang.String day(Object p0) { return null; }
     static long dayStart(Object p0) { return 0; }
-    static com.jarvis.assist.aosui.ai.Features$F f(Object p0, Object p1, Object p2, Object p3, Object p4) { return null; }
+    static Features.F f(Object p0, Object p1, Object p2, Object p3, Object p4) { return null; }
     public static java.lang.String gate(Object p0) { return null; }
     static double parseNum(Object p0) { return 0; }
     public static java.lang.String redactAlways(Object p0) { return null; }
@@ -30,15 +31,15 @@ public class Features {
     public void set(Object p0) { }
     public void setVisibility(Object p0) { }
     public float yOf(Object p0) { return 0; }
-    public Features(Object p0, Object p1, Object p2) { }
     public int getOpacity() { return 0; }
     public void setAlpha(Object p0) { }
     public void setColorFilter(Object p0) { }
     public void close() { }
     public void dockChanged() { }
     public void launch(Object p0, Object p1, Object p2) { }
-    public Features(Object p0, Object p1) { }
-    public android.graphics.Rect getBounds() { return null; 
+    public android.graphics.Rect getBounds() { return null; }
+    public void draw(Object p0) { }
+
     public static class F {
         public String id;
         public F() { }

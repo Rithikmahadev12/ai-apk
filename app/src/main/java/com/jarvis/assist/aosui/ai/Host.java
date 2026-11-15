@@ -1,7 +1,6 @@
 package com.jarvis.assist.aosui.ai;
 
 public class Host {
-
     public org.json.JSONObject ai(Object p0) { return null; }
     public org.json.JSONObject ai(Object p0, Object p1) { return null; }
     public java.lang.String aiHasKey() { return null; }
@@ -42,7 +41,8 @@ public class Host {
     public void settings(Object p0) { }
     public java.lang.String t(Object p0) { return null; }
     public boolean torchSet(Object p0) { return false; }
-    public void url(Object p0) { 
+    public void url(Object p0) { }
+
     public interface Stream {
         void chunk(String s);
     }
