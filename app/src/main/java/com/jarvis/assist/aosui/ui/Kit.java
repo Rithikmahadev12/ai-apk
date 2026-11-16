@@ -1320,7 +1320,7 @@ public final class Kit {
                 accessibilityNodeInfo.setCollectionInfo(AccessibilityNodeInfo.CollectionInfo.obtain(length, 1, false));
             }
         });
-        for (final int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             final String str3 = strArr2[i];
             final boolean equals = str3.equals(str2);
             String str4 = (strArr3 == null || strArr3[i] == null || strArr3[i].isEmpty()) ? null : strArr3[i];
@@ -1328,7 +1328,7 @@ public final class Kit {
             LinearLayout row = row(null, 0, strArr[i], str5, false, new Runnable() { // from class: com.jarvis.assist.aosui.ui.Kit$$ExternalSyntheticLambda4
                 @Override // java.lang.Runnable
                 public final void run() {
-                    Kit.lambda$pickSheet$9(Sheet.this, consumer, str3);
+                    Kit.lambda$pickSheet$9(title, consumer, str3);
                 }
             }, equals ? iconView(CHECK, this.ACC, 14.0f) : null);
             row.setContentDescription(ModelList.a11y(strArr[i], str5, i, length, equals));

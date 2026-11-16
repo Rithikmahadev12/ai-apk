@@ -25,7 +25,7 @@ public class Backend {
     public Backend(Home home) {
         this.h = home;
         Objects.requireNonNull(home);
-        this.b = new Home.Phone();
+        this.b = home.new Phone();
     }
 
     public Context ctx() { return this.h; }

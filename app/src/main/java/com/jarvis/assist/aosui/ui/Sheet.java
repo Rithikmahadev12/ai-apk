@@ -155,8 +155,7 @@ public final class Sheet extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setGravity(8388613);
         linearLayout.setPadding(0, px(8.0f), 0, 0);
-        final int i = 0;
-        while (i < strArr.length) {
+        for (int i = 0; i < strArr.length; i++) {
             TextView textView = new TextView(getContext());
             boolean z2 = z && i == strArr.length - 1;
             textView.setText(strArr[i]);

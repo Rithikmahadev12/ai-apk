@@ -128,7 +128,7 @@ public final class ScrLayout {
                 linearLayout.setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda42
                     @Override // android.view.View.OnClickListener
                     public final void onClick(View view) {
-                        ScrLayout.lambda$home$0(NativeSettings.this, str, i4, view);
+                        ScrLayout.lambda$home$0(nativeSettings, str, i4, view);
                     }
                 });
                 tiles2.addView(linearLayout);
@@ -150,13 +150,13 @@ public final class ScrLayout {
         kit.add(nativeSettings.list(), kit.row(null, 0, t("cz.title", new Object[0]), t("cz.row.sub", new Object[0]), true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda43
             @Override // java.lang.Runnable
             public final void run() {
-                NativeSettings.this.m356lambda$navRow$7$comaugmaososettingsNativeSettings("customcontrol");
+                nativeSettings.m356lambda$navRow$7$comaugmaososettingsNativeSettings("customcontrol");
             }
         }, new View[0]));
         kit.add(nativeSettings.list(), kit.row(null, 0, t("db.set.row", new Object[0]), t("db.set.sub", new Object[0]), true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda44
             @Override // java.lang.Runnable
             public final void run() {
-                NativeSettings.this.m356lambda$navRow$7$comaugmaososettingsNativeSettings("brief");
+                nativeSettings.m356lambda$navRow$7$comaugmaososettingsNativeSettings("brief");
             }
         }, new View[0]));
         nativeSettings.sec(t("ns.gestures", new Object[0]));
@@ -164,7 +164,7 @@ public final class ScrLayout {
         kit.add(list, kit.toggleRow(t("ns.dbl", new Object[0]), null, cfg3.dbl, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda45
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLayout.lambda$home$3(NativeSettings.this, (Boolean) obj);
+                ScrLayout.lambda$home$3(nativeSettings, (Boolean) obj);
             }
         }));
         lockRow(nativeSettings, list);
@@ -181,7 +181,7 @@ public final class ScrLayout {
         TextView btn = kit.btn(t("ns.reset", new Object[0]), true, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda47
             @Override // java.lang.Runnable
             public final void run() {
-                ScrLayout.lambda$home$4(NativeSettings.this);
+                ScrLayout.lambda$home$4(nativeSettings);
             }
         });
         LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(-2, -2);
@@ -220,7 +220,7 @@ public final class ScrLayout {
         final Runnable runnable = new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda36
             @Override // java.lang.Runnable
             public final void run() {
-                ScrLayout.lambda$lockRow$5(NativeSettings.this);
+                ScrLayout.lambda$lockRow$5(nativeSettings);
             }
         };
         ArrayList arrayList = new ArrayList();
@@ -228,7 +228,7 @@ public final class ScrLayout {
             arrayList.add(kit.btn(t("lock.setup", new Object[0]), false, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda37
                 @Override // java.lang.Runnable
                 public final void run() {
-                    LockSheet.ask(r0.root, r0.th, NativeSettings.this.be, false, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda28
+                    LockSheet.ask(r0.root, r0.th, nativeSettings.be, false, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda28
                         @Override // java.util.function.Consumer
                         public final void accept(Object obj) {
                             r1.run();
@@ -249,7 +249,7 @@ public final class ScrLayout {
             arrayList.add(kit.btn(t("lock.setup", new Object[0]), false, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda39
                 @Override // java.lang.Runnable
                 public final void run() {
-                    LockSheet.ask(r0.root, r0.th, NativeSettings.this.be, true, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda18
+                    LockSheet.ask(r0.root, r0.th, nativeSettings.be, true, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda18
                         @Override // java.util.function.Consumer
                         public final void accept(Object obj) {
                             r1.run();
@@ -296,7 +296,7 @@ public final class ScrLayout {
         final Consumer consumer = new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda59
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLayout.lambda$picker$12(NativeSettings.this, str, i2, title, (String) obj);
+                ScrLayout.lambda$picker$12(nativeSettings, str, i2, title, (String) obj);
             }
         };
         body.addView(kit2.section("AOS"));
@@ -437,7 +437,7 @@ public final class ScrLayout {
                     arrayList.add(kit.circle(Kit.X, t + " " + slotName, true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda53
                         @Override // java.lang.Runnable
                         public final void run() {
-                            ScrLayout.lambda$custom$16(NativeSettings.this, str4, i5);
+                            ScrLayout.lambda$custom$16(nativeSettings, str4, i5);
                         }
                     }));
                 } else {
@@ -454,7 +454,7 @@ public final class ScrLayout {
                     spacer = kit.circle(Kit.UP, t("ns.up", "name", str3), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda54
                         @Override // java.lang.Runnable
                         public final void run() {
-                            ScrLayout.czMove(NativeSettings.this, str4, r2, i5 - 1);
+                            ScrLayout.czMove(nativeSettings, str4, r2, i5 - 1);
                         }
                     });
                 } else {
@@ -466,14 +466,14 @@ public final class ScrLayout {
                 arrayList.add(i5 < slots.size() + (-1) ? kit.circle(Kit.DOWN, t("ns.down", obj, str3), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda55
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.czMove(NativeSettings.this, str4, r2, i5 + 1);
+                        ScrLayout.czMove(nativeSettings, str4, r2, i5 + 1);
                     }
                 }) : spacer(nativeSettings));
                 LinearLayout linearLayout2 = linearLayout;
                 LinearLayout row = kit.row(null, 0, str3, t("cz.kind." + HomeSlots.kind(str5), new Object[0]), false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda56
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.czPick(NativeSettings.this, str4, i5);
+                        ScrLayout.czPick(nativeSettings, str4, i5);
                     }
                 }, (View[]) arrayList.toArray(new View[0]));
                 i5++;
@@ -491,7 +491,7 @@ public final class ScrLayout {
                 nativeSettings.add(kit3.hrow(kit3.btn(t("cz.add", new Object[0]), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda57
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.czPick(NativeSettings.this, str4, -1);
+                        ScrLayout.czPick(nativeSettings, str4, -1);
                     }
                 })));
             }
@@ -534,7 +534,7 @@ public final class ScrLayout {
             kit.add(list, kit.row(null, 0, t("cn." + str2, new Object[0]), (user == null ? t("cn.auto", new Object[0]) + " · " : "") + t("cn.i." + pick, new Object[0]), true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda35
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLayout.cornerPick(NativeSettings.this, str2);
+                    ScrLayout.cornerPick(nativeSettings, str2);
                 }
             }, new View[0]));
         }
@@ -609,7 +609,7 @@ public final class ScrLayout {
         kit.add(list, kit.row(null, 0, t("pg.main", new Object[0]), pc.def == 0 ? t("pg.default", new Object[0]) : null, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda5
             @Override // java.lang.Runnable
             public final void run() {
-                ScrLayout.lambda$pages$24(NativeSettings.this);
+                ScrLayout.lambda$pages$24(nativeSettings);
             }
         }, new View[0]));
         int i = 1;
@@ -655,7 +655,7 @@ public final class ScrLayout {
             kit.add(list, kit.row(null, 0, String.format(Locale.ROOT, "%02d  %s", Integer.valueOf(i3), page.name) + (pc.def == i2 ? "  · " + t("pg.default", new Object[0]) : ""), sb.length() == 0 ? t("pg.empty", new Object[0]) : sb.toString(), false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda9
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLayout.pageEdit(NativeSettings.this, i2);
+                    ScrLayout.pageEdit(nativeSettings, i2);
                 }
             }, (View[]) arrayList.toArray(new View[0])));
             i2 = i3;
@@ -665,7 +665,7 @@ public final class ScrLayout {
             nativeSettings.add(kit.hrow(kit.btn(t("pg.add", new Object[0]), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda10
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLayout.lambda$pages$29(NativeSettings.this);
+                    ScrLayout.lambda$pages$29(nativeSettings);
                 }
             })));
         }
@@ -932,7 +932,7 @@ public final class ScrLayout {
         final Consumer consumer = new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda0
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLayout.lambda$czPick$40(NativeSettings.this, str, i, title, (String) obj);
+                ScrLayout.lambda$czPick$40(nativeSettings, str, i, title, (String) obj);
             }
         };
         final String[] strArr = {("qs".equals(str) || "qs2".equals(str)) ? "controls" : "apps"};
@@ -1070,7 +1070,7 @@ public final class ScrLayout {
                 arrayList.add(kit.circle(Kit.X, t("wid.remove", new Object[0]) + " " + wname, true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda11
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.lambda$widgets$48(NativeSettings.this, str);
+                        ScrLayout.lambda$widgets$48(nativeSettings, str);
                     }
                 }));
             }
@@ -1080,7 +1080,7 @@ public final class ScrLayout {
                 spacer = kit.circle(Kit.UP, t("ns.up", "name", wname), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda12
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.move(NativeSettings.this, i2, -1);
+                        ScrLayout.move(nativeSettings, i2, -1);
                     }
                 });
             } else {
@@ -1092,14 +1092,14 @@ public final class ScrLayout {
             arrayList.add(i2 < cfg.widgets.size() + (-1) ? kit.circle(Kit.DOWN, t("ns.down", obj, wname), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda13
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLayout.move(NativeSettings.this, i2, 1);
+                    ScrLayout.move(nativeSettings, i2, 1);
                 }
             }) : spacer(nativeSettings));
             if (!"greeting".equals(str)) {
                 callback = kit.toggle(z, wname, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda14
                     @Override // java.util.function.Consumer
                     public final void accept(Object obj2) {
-                        ScrLayout.lambda$widgets$51(NativeSettings.this, str, (Boolean) obj2);
+                        ScrLayout.lambda$widgets$51(nativeSettings, str, (Boolean) obj2);
                     }
                 });
             } else {
@@ -1115,7 +1115,7 @@ public final class ScrLayout {
         nativeSettings.add(kit.hrow(kit.btn(t("wid.add", new Object[0]), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda15
             @Override // java.lang.Runnable
             public final void run() {
-                ScrLayout.addWidget(NativeSettings.this);
+                ScrLayout.addWidget(nativeSettings);
             }
         })));
         nativeSettings.fine(t("wid.add.fine", new Object[0]));
@@ -1130,14 +1130,14 @@ public final class ScrLayout {
         kit.add(list2, kit.row(null, 0, t("clocks.title", new Object[0]), sb.toString(), true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda16
             @Override // java.lang.Runnable
             public final void run() {
-                NativeSettings.this.m356lambda$navRow$7$comaugmaososettingsNativeSettings("clocks");
+                nativeSettings.m356lambda$navRow$7$comaugmaososettingsNativeSettings("clocks");
             }
         }, new View[0]));
         int size = AppGridModel.parse(Store.get(AppGridModel.KEY, "")).size();
         kit.add(list2, kit.row(null, 0, t("wid.appgrid", new Object[0]), size == 0 ? t("ag.none", new Object[0]) : t("ag.n", "n", Integer.valueOf(size)), true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda17
             @Override // java.lang.Runnable
             public final void run() {
-                NativeSettings.this.m356lambda$navRow$7$comaugmaososettingsNativeSettings(AppGridModel.ID);
+                nativeSettings.m356lambda$navRow$7$comaugmaososettingsNativeSettings(AppGridModel.ID);
             }
         }, new View[0]));
     }
@@ -1174,7 +1174,7 @@ public final class ScrLayout {
         kit.add(nativeSettings.list(), kit.toggleRow(t("ag.show", new Object[0]), t("ag.show.sub", new Object[0]), !cfg.off.contains(AppGridModel.ID), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda64
             @Override // java.util.function.Consumer
             public final void accept(Object obj2) {
-                ScrLayout.lambda$appGrid$55(NativeSettings.this, (Boolean) obj2);
+                ScrLayout.lambda$appGrid$55(nativeSettings, (Boolean) obj2);
             }
         }));
         nativeSettings.sec(t("ag.apps", "n", Integer.valueOf(parse.size()), "max", 8));
@@ -1207,7 +1207,7 @@ public final class ScrLayout {
                 spacer = kit.circle(Kit.UP, t("ns.up", "name", str2), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda66
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.agMove(NativeSettings.this, i4, -1);
+                        ScrLayout.agMove(nativeSettings, i4, -1);
                     }
                 });
             } else {
@@ -1219,7 +1219,7 @@ public final class ScrLayout {
             arrayList.add(i4 < parse.size() + (-1) ? kit.circle(Kit.DOWN, t("ns.down", obj, str2), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda67
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLayout.agMove(NativeSettings.this, i4, 1);
+                    ScrLayout.agMove(nativeSettings, i4, 1);
                 }
             }) : spacer(nativeSettings));
             LinearLayout row = kit.row(null, 0, str2, null, false, null, (View[]) arrayList.toArray(new View[0]));
@@ -1233,7 +1233,7 @@ public final class ScrLayout {
             nativeSettings.add(kit.hrow(kit.btn(t("ag.add", new Object[0]), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda68
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLayout.agPick(NativeSettings.this);
+                    ScrLayout.agPick(nativeSettings);
                 }
             })));
         }
@@ -1487,14 +1487,14 @@ public final class ScrLayout {
         kit.add(nativeSettings.list(), kit.row(null, 0, t("you.row", new Object[0]), str2.isEmpty() ? t("you.none", new Object[0]) : str2.toUpperCase(Locale.getDefault()), true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda33
             @Override // java.lang.Runnable
             public final void run() {
-                ScrLayout.lambda$brief$70(NativeSettings.this);
+                ScrLayout.lambda$brief$70(nativeSettings);
             }
         }, new View[0]));
         nativeSettings.fine(t("db.set.fine", new Object[0]));
         nativeSettings.add(kit.hrow(kit.btn(t("db.title", new Object[0]), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda34
             @Override // java.lang.Runnable
             public final void run() {
-                NativeSettings.this.be.openApp("Brief");
+                nativeSettings.be.openApp("Brief");
             }
         })));
     }

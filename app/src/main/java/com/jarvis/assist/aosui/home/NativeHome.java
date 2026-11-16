@@ -19,4 +19,5 @@ public class NativeHome {
     public void onStart() { }
     public void onStop() { }
     public void onThermal(int level) { }
+    public void onApps() { }
 }

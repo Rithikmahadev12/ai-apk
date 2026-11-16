@@ -35,6 +35,8 @@ public class Tools {
     public static java.lang.String ns(Object p0) { return null; }
     static double num(Object p0) { return 0; }
     public static org.json.JSONObject o(Object p0) { return null; }
+    public static org.json.JSONObject o(Object p0, Object p1, Object p2, Object p3, Object p4, Object p5) { return null; }
+    public static org.json.JSONObject o(Object... args) { return null; }
     static java.lang.String p2(Object p0) { return null; }
     static org.json.JSONObject pick(Object p0, Object p1) { return null; }
     static java.lang.Object pos(Object p0, Object p1) { return null; }

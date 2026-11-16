@@ -287,7 +287,7 @@ final class BriefViews {
             this.ro = new RectF();
             this.ri = new RectF();
             this.pt = new float[2];
-            this.arcs = new float[0];
+            this.arcs = new float[0][];
             this.nowDeg = 90.0f;
             this.k = 1.0f;
             this.dn = f;
@@ -314,7 +314,7 @@ final class BriefViews {
 
         /* JADX INFO: Access modifiers changed from: package-private */
         public void set(List<float[]> list, float[] fArr, float[] fArr2) {
-            this.arcs = (float[][]) list.toArray(new float[0]);
+            this.arcs = list.toArray(new float[0][]);
             this.sleepA = fArr;
             this.dayA = fArr2;
             invalidate();
@@ -624,7 +624,7 @@ final class BriefViews {
             this.mono = new Paint(1);
             this.val = new Paint(1);
             this.ic = new Paint(1);
-            this.h = new String[0];
+            this.h = new String[0][];
             this.col = new int[0];
             this.dn = f;
             this.th = theme;
@@ -641,7 +641,7 @@ final class BriefViews {
 
         /* JADX INFO: Access modifiers changed from: package-private */
         public void set(List<String[]> list) {
-            this.h = (String[][]) list.toArray(new String[0]);
+            this.h = list.toArray(new String[0][]);
             this.col = new int[this.h.length];
             for (int i = 0; i < this.h.length; i++) {
                 this.col[i] = this.th.sc2(this.h[i][2]);

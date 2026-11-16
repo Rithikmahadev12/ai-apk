@@ -83,7 +83,10 @@ public final class Theme {
 
     public static int mix(int i, int i2, float f) {
         float max = Math.max(0.0f, Math.min(1.0f, f));
-        return (i & (-16777216)) | (Math.round(((i >> 16) & 255) + ((((i2 >> 16) & 255) - r0) * max)) << 16) | (Math.round(((i >> 8) & 255) + ((((i2 >> 8) & 255) - r1) * max)) << 8) | Math.round((i & 255) + (((i2 & 255) - r2) * max));
+        int r0 = (i >> 16) & 255;
+        int r1 = (i >> 8) & 255;
+        int r2 = i & 255;
+        return (i & (-16777216)) | (Math.round(r0 + ((((i2 >> 16) & 255) - r0) * max)) << 16) | (Math.round(r1 + ((((i2 >> 8) & 255) - r1) * max)) << 8) | Math.round(r2 + (((i2 & 255) - r2) * max));
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */

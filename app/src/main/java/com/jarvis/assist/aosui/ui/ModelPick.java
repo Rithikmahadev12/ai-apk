@@ -32,7 +32,7 @@ public final class ModelPick {
         select.setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.ui.ModelPick$$ExternalSyntheticLambda2
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                ModelPick.open(Kit.this, frameLayout, str, str2, strArr, str3, z, biConsumer, textView, consumer);
+                ModelPick.open(kit, frameLayout, str, str2, strArr, str3, z, biConsumer, textView, consumer);
             }
         });
         return select;

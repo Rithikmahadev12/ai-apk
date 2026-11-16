@@ -2,6 +2,9 @@ package com.jarvis.assist.aosui.ai;
 
 public class ModelList {
 
+    public static final String REFRESH = "__refresh__";
+    public static final String CUSTOM = "__custom__";
+
     private ModelList() { }
     public static java.lang.String a11y(Object p0, Object p1, Object p2, Object p3, Object p4) { return null; }
     static void add(Object p0, Object p1, Object p2) { }
@@ -26,7 +29,7 @@ public class ModelList {
     public static java.util.List parse(Object p0, Object p1) { return null; }
     public static java.lang.String recommended(Object p0, Object p1, Object p2, Object p3) { return null; }
     public static java.lang.String replacement(Object p0, Object p1) { return null; }
-    public static Object[] rows(Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7) { return null; }
+    public static String[][] rows(Object p0, Object p1, Object p2, Object p3, Object p4, Object p5, Object p6, Object p7) { return new String[3][0]; }
     public static java.lang.String smallDefault(Object p0, Object p1) { return null; }
     public static java.lang.String smallest(Object p0, Object p1) { return null; }
     public static java.util.List sorted(Object p0) { return null; }

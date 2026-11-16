@@ -3,4 +3,5 @@ import android.content.Context;
 public class PhoneAssist {
     public static void open(Context ctx, String query) { }
     public static java.lang.String info(Context ctx) { return null; }
+    public static boolean open(android.content.Context ctx, String query, boolean z) { return false; }
 }

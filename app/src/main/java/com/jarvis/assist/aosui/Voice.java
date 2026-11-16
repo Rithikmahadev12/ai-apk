@@ -15,6 +15,7 @@ public class Voice {
     public void cancel() { }
     public void speak(Object arr, boolean b) { }
     public static void openVoiceSettings(Context ctx) { }
+    public static void openVoiceSettings(Context ctx, String setting) { }
 
     public interface Ev {
         void on(String event, String data);

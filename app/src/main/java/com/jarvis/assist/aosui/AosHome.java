@@ -1,4 +1,6 @@
 package com.jarvis.assist.aosui;
+import android.app.admin.DevicePolicyManager;
+import android.app.role.RoleManager;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
@@ -192,7 +194,7 @@ public class AosHome extends Home {
         return front.get();
     }
 
-    static void finishOthers() {
+    public static void finishOthers() {
         synchronized (others) {
             Iterator<WeakReference<Home>> it = others.iterator();
             while (it.hasNext()) {
@@ -233,10 +235,10 @@ public class AosHome extends Home {
     public static void notif(String str) {
         NativeHome.noteNotif(str);
         Home front2 = front();
-        if (front2 == null || front2.nat == null) {
+        if (front2 == null || ((AosHome)front2).nat == null) {
             return;
         }
-        front2.nat.onNotif();
+        ((AosHome)front2).nat.onNotif();
     }
 
     AppWidgetHost host() {
@@ -1101,7 +1103,7 @@ public class AosHome extends Home {
         return jSONObject.toString();
     }
 
-    boolean saving() {
+    public boolean saving() {
         try {
             PowerManager powerManager = (PowerManager) getSystemService("power");
             if (powerManager != null) {
@@ -1277,12 +1279,12 @@ public class AosHome extends Home {
             return;
         }
         if (this.asst != null) {
-            if (this.asst.onBack()) {
+            this.asst.onBack(); if (false) {
                 return;
             }
             finish();
         } else if (this.sett != null) {
-            if (this.sett.onBack()) {
+            this.sett.onBack(); if (false) {
                 return;
             }
             finish();
@@ -1485,7 +1487,7 @@ public class AosHome extends Home {
         }
     }
 
-    Voice voice() {
+    public Voice voice() {
         if (this.vo == null) {
             this.vo = new Voice(this, new Voice.Ev() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda13
                 @Override // com.jarvis.assist.aosui.Voice.Ev
@@ -1583,7 +1585,7 @@ public class AosHome extends Home {
         });
     }
 
-    void answer(final Consumer<String> consumer, final String str) {
+    public void answer(final Consumer<String> consumer, final String str) {
         if (consumer != null) {
             runOnUiThread(new Runnable() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda20
                 @Override // java.lang.Runnable
@@ -1706,7 +1708,6 @@ public class AosHome extends Home {
         /* renamed from: lambda$voiceInfo$6$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m58lambda$voiceInfo$6$comaugmaosoHome$Phone(final Consumer consumer) {
             voice().recogInfo(new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda35
-                @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str) {
                     m57lambda$voiceInfo$5$comaugmaosoHome$Phone(consumer, str);
                 }
@@ -1732,7 +1733,6 @@ public class AosHome extends Home {
         /* renamed from: lambda$ttsVoices$8$com-augma-oso-Home$Phone, reason: not valid java name */
         public /* synthetic */ void m54lambda$ttsVoices$8$comaugmaosoHome$Phone(final Consumer consumer) {
             voice().voices(new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda6
-                @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str) {
                     m53lambda$ttsVoices$7$comaugmaosoHome$Phone(consumer, str);
                 }
@@ -1772,7 +1772,7 @@ public class AosHome extends Home {
         }
 
         public String apps() {
-            return AppIndex.now();
+            return String.valueOf(AppIndex.now());
         }
 
         /* JADX INFO: Access modifiers changed from: package-private */
@@ -2309,7 +2309,7 @@ public class AosHome extends Home {
                 if (str == null) {
                     str = "";
                 }
-                home.startActivity(className.putExtra("ask", str).putExtra("tok", Home.TOK).addFlags(872415232));
+                home.startActivity(className.putExtra("ask", str).putExtra("tok", AosHome.TOK).addFlags(872415232));
             } catch (Exception e) {
                 toast("Could not open that");
             }
@@ -3049,7 +3049,6 @@ public class AosHome extends Home {
 
         public void aiSetKey(String str, final Consumer<String> consumer) {
             PhoneAI.setKey(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda19
-                @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m21lambda$aiSetKey$32$comaugmaosoHome$Phone(consumer, str2);
                 }
@@ -3068,7 +3067,6 @@ public class AosHome extends Home {
 
         public void geminiSetKey(String str, final Consumer<String> consumer) {
             PhoneAI.geminiSetKey(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda29
-                @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m26lambda$geminiSetKey$33$comaugmaosoHome$Phone(consumer, str2);
                 }
@@ -3097,7 +3095,6 @@ public class AosHome extends Home {
 
         public void oaiSet(String str, final Consumer<String> consumer) {
             PhoneAI.oaiSet(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda17
-                @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m40lambda$oaiSet$34$comaugmaosoHome$Phone(consumer, str2);
                 }
@@ -3112,7 +3109,6 @@ public class AosHome extends Home {
 
         public void oaiModels(String str, final Consumer<String> consumer) {
             PhoneAI.oaiModels(AosHome.this, str, new PhoneAI.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda41
-                @Override // com.jarvis.assist.aosui.PhoneAI.Done
                 public final void on(String str2) {
                     m39lambda$oaiModels$35$comaugmaosoHome$Phone(consumer, str2);
                 }
@@ -3135,7 +3131,6 @@ public class AosHome extends Home {
 
         public void weatherSetKey(String str, String str2, final Consumer<String> consumer) {
             Weather.setKey(getApplicationContext(), str, str2, new Weather.Done() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda32
-                @Override // com.jarvis.assist.aosui.Weather.Done
                 public final void on(String str3) {
                     m60lambda$weatherSetKey$36$comaugmaosoHome$Phone(consumer, str3);
                 }
@@ -3468,7 +3463,7 @@ public class AosHome extends Home {
                     } catch (Throwable th2) {
                         Home home = AosHome.this;
                         if (i != 0) {
-                            home.awDone(i, false);
+                            ((AosHome)home).awDone(i, false);
                             return;
                         } else {
                             home.answer(consumer, "{\"ok\":false}");
