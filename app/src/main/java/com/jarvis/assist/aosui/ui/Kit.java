@@ -1588,8 +1588,7 @@ public final class Kit {
         String value = HomeTheme.value(HomeTheme.parse(str));
         final String[] strArr = {"", "1", HomeTheme.AOA_V};
         String[] strArr2 = {"adv.theme.simple", "adv.theme.adv", "adv.theme.aoa"};
-        final int i = 0;
-        while (i < 3) {
+        for (int i = 0; i < 3; i++) {
             final boolean z = i > 0;
             boolean equals = strArr[i].equals(value);
             LinearLayout linearLayout2 = new LinearLayout(this.c);

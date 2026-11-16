@@ -551,7 +551,7 @@ public final class BriefPage {
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: lambda$load$7$com-augma-oso-brief-BriefPage, reason: not valid java name */
     public /* synthetic */ void m185lambda$load$7$comaugmaosobriefBriefPage(boolean z, final int i) {
-        final String dbg = dbg("aos.dbg.health");
+        String dbg = dbg("aos.dbg.health");
         if (dbg == null) {
             dbg = this.be.healthToday(z);
         }
@@ -576,7 +576,7 @@ public final class BriefPage {
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: lambda$load$9$com-augma-oso-brief-BriefPage, reason: not valid java name */
     public /* synthetic */ void m187lambda$load$9$comaugmaosobriefBriefPage(final int i) {
-        final String dbg = dbg("aos.dbg.week");
+        String dbg = dbg("aos.dbg.week");
         if (dbg == null) {
             dbg = this.be.healthWeek();
         }

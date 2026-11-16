@@ -3,6 +3,8 @@ package com.jarvis.assist.aosui.ai;
 public class ModelList {
 
     public static final String REFRESH = "__refresh__";
+    public static final String CLAUDE_DEFAULT = "claude-sonnet-4-6";
+    public static final String GEMINI_DEFAULT = "gemini-2.0-flash";
     public static final String CUSTOM = "__custom__";
 
     private ModelList() { }

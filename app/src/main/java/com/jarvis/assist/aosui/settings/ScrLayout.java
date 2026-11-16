@@ -103,7 +103,7 @@ public final class ScrLayout {
                 LinearLayout linearLayout2 = new LinearLayout(nativeSettings.c);
                 linearLayout2.setOrientation(1);
                 String str5 = str3;
-                final int i4 = i2;
+                int i4 = i2;
                 SettingsModel.Cfg cfg2 = cfg;
                 int i5 = slots;
                 String[] strArr2 = strArr;
@@ -287,7 +287,7 @@ public final class ScrLayout {
         Kit kit;
         String[] strArr;
         Kit.IconView iconView;
-        final int i2 = i;
+        int i2 = i;
         Kit kit2 = nativeSettings.k;
         List<String> slots = nativeSettings.cfg().slots(str);
         int i3 = i2 + 1;
@@ -421,7 +421,7 @@ public final class ScrLayout {
             int max = HomeSlots.max(str4);
             nativeSettings.sec(t("cz.area." + str4, new Object[i4]) + " · " + slots.size() + " / " + max);
             LinearLayout list = nativeSettings.list();
-            final int i5 = i4;
+            int i5 = i4;
             while (i5 < slots.size()) {
                 String str5 = slots.get(i5);
                 String slotName = slotName(str5);
@@ -613,7 +613,7 @@ public final class ScrLayout {
             }
         }, new View[0]));
         int i = 1;
-        final int i2 = 1;
+        int i2 = 1;
         while (i2 <= pc.pages.size()) {
             HomePages.Page page = pc.pages.get(i2 - 1);
             ArrayList arrayList = new ArrayList();
@@ -721,7 +721,7 @@ public final class ScrLayout {
         body.addView(input);
         LinearLayout list = kit.list();
         body.addView(list);
-        for (final int i2 = 0; i2 < page.blocks.size(); i2++) {
+        for (int i2 = 0; i2 < page.blocks.size(); i2++) {
             HomePages.Block block = page.blocks.get(i2);
             kit.add(list, kit.row(null, 0, t("pg.t." + block.type, new Object[0]), "grid".equals(block.type) ? block.items.size() + " APPS" : String.join(" · ", block.items).toUpperCase(Locale.ROOT), false, null, kit.circle(Kit.X, t("wid.remove", new Object[0]), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda48
                 @Override // java.lang.Runnable
@@ -1059,7 +1059,7 @@ public final class ScrLayout {
         SettingsModel.Cfg cfg = nativeSettings.cfg();
         nativeSettings.add(nativeSettings.hd(NativeSettings.up(t("set.widgets", new Object[0])), t("wid.sub", new Object[0])));
         LinearLayout list = nativeSettings.list();
-        final int i2 = 0;
+        int i2 = 0;
         while (i2 < cfg.widgets.size()) {
             final String str = cfg.widgets.get(i2);
             boolean z = !cfg.off.contains(str);
@@ -1190,7 +1190,7 @@ public final class ScrLayout {
         if (parse.isEmpty()) {
             kit.add(list, kit.row(null, 0, t("ag.none", new Object[0]), t("ag.none.sub", new Object[0]), false, null, new View[0]));
         }
-        final int i4 = 0;
+        int i4 = 0;
         while (i4 < parse.size()) {
             final String str = parse.get(i4);
             String str2 = hashMap.containsKey(str) ? (String) hashMap.get(str) : str;
@@ -1562,7 +1562,7 @@ public final class ScrLayout {
             i = i2;
         }
         nativeSettings.add(nativeSettings.hd(NativeSettings.up(t("clocks.title", new Object[0])), t("clocks.sub", new Object[0])));
-        final int i3 = 0;
+        int i3 = 0;
         while (i3 < 3) {
             int i4 = i3 + 1;
             nativeSettings.sec(t("clocks.n", "n", Integer.valueOf(i4)));
