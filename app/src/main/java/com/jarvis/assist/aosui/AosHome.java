@@ -489,23 +489,19 @@ public class AosHome extends Home {
             awDone(this.awPending, i2 == -1);
             return;
         }
-        Uri uri = null;
         if (i == 7501) {
             final String str = this.expJson;
             final Consumer<String> consumer = this.expCb;
             this.expJson = null;
             this.expCb = null;
-            if (i2 == -1 && intent != null) {
-                uri = intent.getData();
-            }
-            if (uri == null || str == null) {
+            final Uri uri7501 = (i2 == -1 && intent != null) ? intent.getData() : null;
+            if (uri7501 == null || str == null) {
                 answer(consumer, "{\"ok\":false,\"error\":\"CANCELLED\"}");
                 return;
             } else {
-                Memory.io(new Runnable() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda1
-                    @Override // java.lang.Runnable
-                    public final void run() {
-                        m11lambda$onActivityResult$3$comaugmaosoHome(uri, str, consumer);
+                Memory.io(new Runnable() {
+                    @Override public final void run() {
+                        m11lambda$onActivityResult$3$comaugmaosoHome(uri7501, str, consumer);
                     }
                 });
                 return;
@@ -514,17 +510,14 @@ public class AosHome extends Home {
         if (i == 7502) {
             final Consumer<String> consumer2 = this.impCb;
             this.impCb = null;
-            if (i2 == -1 && intent != null) {
-                uri = intent.getData();
-            }
-            if (uri == null) {
+            final Uri uri7502 = (i2 == -1 && intent != null) ? intent.getData() : null;
+            if (uri7502 == null) {
                 answer(consumer2, "{\"ok\":false,\"error\":\"CANCELLED\"}");
                 return;
             } else {
-                Memory.io(new Runnable() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda2
-                    @Override // java.lang.Runnable
-                    public final void run() {
-                        m12lambda$onActivityResult$4$comaugmaosoHome(uri, consumer2);
+                Memory.io(new Runnable() {
+                    @Override public final void run() {
+                        m12lambda$onActivityResult$4$comaugmaosoHome(uri7502, consumer2);
                     }
                 });
                 return;
@@ -533,14 +526,11 @@ public class AosHome extends Home {
         if (i == 7401) {
             final Consumer<String> consumer3 = this.appleCb;
             this.appleCb = null;
-            if (i2 == -1 && intent != null) {
-                uri = intent.getData();
-            }
-            if (uri != null) {
-                Memory.io(new Runnable() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda3
-                    @Override // java.lang.Runnable
-                    public final void run() {
-                        m14lambda$onActivityResult$6$comaugmaosoHome(uri, consumer3);
+            final Uri uri7401 = (i2 == -1 && intent != null) ? intent.getData() : null;
+            if (uri7401 != null) {
+                Memory.io(new Runnable() {
+                    @Override public final void run() {
+                        m14lambda$onActivityResult$6$comaugmaosoHome(uri7401, consumer3);
                     }
                 });
                 return;
@@ -840,10 +830,11 @@ public class AosHome extends Home {
             if (trim.length() > 4000) {
                 trim = trim.substring(0, 4000);
             }
+            final String trimFinal = trim;
             Memory.io(new Runnable() { // from class: com.jarvis.assist.aosui.Home$$ExternalSyntheticLambda19
                 @Override // java.lang.Runnable
                 public final void run() {
-                    m17lambda$takeShare$11$comaugmaosoHome(trim, arrayList);
+                    m17lambda$takeShare$11$comaugmaosoHome(trimFinal, arrayList);
                 }
             });
         }
@@ -898,7 +889,6 @@ public class AosHome extends Home {
                                     }
                                 }
                                 throw th;
-                                break;
                             }
                         }
                         if (openAssetFileDescriptor != null) {
@@ -2547,10 +2537,11 @@ public class AosHome extends Home {
                     str2 = "android.settings.SETTINGS";
                     break;
             }
+            final String str2Final = str2;
             runOnUiThread(new Runnable() { // from class: com.jarvis.assist.aosui.Home$Phone$$ExternalSyntheticLambda4
                 @Override // java.lang.Runnable
                 public final void run() {
-                    m49lambda$settings$19$comaugmaosoHome$Phone(str2);
+                    m49lambda$settings$19$comaugmaosoHome$Phone(str2Final);
                 }
             });
         }
@@ -3182,7 +3173,7 @@ public class AosHome extends Home {
             } catch (org.json.JSONException e) {
                 return "{}";
             }
-            throw new UnsupportedOperationException("Method not decompiled: com.jarvis.assist.aosui.Home.Phone.lockState():java.lang.String");
+            // throw new UnsupportedOperationException("Method not decompiled"); // removed: unreachable
         }
 
         public boolean lockScreen() {

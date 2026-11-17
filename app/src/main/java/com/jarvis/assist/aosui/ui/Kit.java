@@ -747,7 +747,7 @@ public final class Kit {
             setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.ui.Kit$Toggle$$ExternalSyntheticLambda0
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    Kit.toggle.m368lambda$new$0$comaugmaosouiKit$Toggle(view);
+                    Toggle.this.m368lambda$new$0$comaugmaosouiKit$Toggle(view);
                 }
             });
             setAccessibilityDelegate(new View.AccessibilityDelegate() { // from class: com.jarvis.assist.aosui.ui.Kit.Toggle.1
@@ -756,8 +756,8 @@ public final class Kit {
                     super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                     accessibilityNodeInfo.setClassName("android.widget.Switch");
                     accessibilityNodeInfo.setCheckable(true);
-                    accessibilityNodeInfo.setChecked(toggle.on);
-                    accessibilityNodeInfo.setEnabled(toggle.enabled);
+                    accessibilityNodeInfo.setChecked(Toggle.this.on);
+                    accessibilityNodeInfo.setEnabled(Toggle.this.enabled);
                 }
             });
             setLayoutParams(new LinearLayout.LayoutParams(Kit.this.px(48.0f), Kit.this.px(44.0f)));

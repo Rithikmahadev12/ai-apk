@@ -454,7 +454,7 @@ public final class ScrLayout {
                     spacer = kit.circle(Kit.UP, t("ns.up", "name", str3), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda54
                         @Override // java.lang.Runnable
                         public final void run() {
-                            ScrLayout.czMove(nativeSettings, str4, null, i5 - 1);
+                            ScrLayout.czMove(nativeSettings, str4, (String)null, i5 - 1);
                         }
                     });
                 } else {
@@ -466,7 +466,7 @@ public final class ScrLayout {
                 arrayList.add(i5 < slots.size() + (-1) ? kit.circle(Kit.DOWN, t("ns.down", obj, str3), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda55
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.czMove(nativeSettings, str4, null, i5 + 1);
+                        ScrLayout.czMove(nativeSettings, str4, (String)null, i5 + 1);
                     }
                 }) : spacer(nativeSettings));
                 LinearLayout linearLayout2 = linearLayout;

@@ -151,13 +151,13 @@ public final class ScrAssist {
         kit.add(list, kit.toggleRow(t("set.pa.voice", new Object[i2]), t("set.pa.voice.sub", "name", optString), "1".equals(nativeSettings.be.get("ai.pa.voice")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda48
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.be.set("ai.pa.voice", r2.booleanValue() ? "1" : "");
+                nativeSettings.be.set("ai.pa.voice", ((Boolean)obj).booleanValue() ? "1" : "");
             }
         }));
         kit.add(list, kit.toggleRow(t("set.pa.fallback", new Object[0]), null, !"0".equals(nativeSettings.be.get("ai.pa.fallback")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda49
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.be.set("ai.pa.fallback", r2.booleanValue() ? "" : "0");
+                nativeSettings.be.set("ai.pa.fallback", ((Boolean)obj).booleanValue() ? "" : "0");
             }
         }));
         nativeSettings.fine(t("set.pa.cmds", new Object[0]));
@@ -212,7 +212,7 @@ public final class ScrAssist {
                 spacer = ScrLayout.spacer(nativeSettings);
             } else {
                 i3 = i6;
-                kit = kit;
+                // kit = kit; // JADX artifact removed
                 str = str4;
                 str3 = str7;
                 JSONObject jSONObject5 = opt2;
@@ -260,7 +260,8 @@ public final class ScrAssist {
             row.addView(kit.num(z2 ? String.valueOf(i4 + 1) : "–"), 0);
             ((LinearLayout.LayoutParams) row.getChildAt(1).getLayoutParams()).leftMargin = nativeSettings.px(12.0f);
             kit.add(linearLayout, row);
-            order = list3;
+            // order = list3; // replaced:
+            final java.util.List<String> order2 = list3;
             list2 = linearLayout;
             i6 = i3;
             str4 = str;
@@ -323,7 +324,7 @@ public final class ScrAssist {
         if (notes.isEmpty()) {
             ((LinearLayout) kit.add(list5, kit.row(null, 0, "", null, false, null, new View[0]))).addView(kit.mono(t("ns.notes.none", new Object[0]), 8.5f, kit.DIM), 0);
         }
-        for (final int i8 = 0; i8 < notes.size(); i8++) {
+        for (int i8 = 0; i8 < notes.size(); i8++) {
             LinearLayout rowWrap2 = kit.rowWrap(notes.get(i8), null, kit.circle(Kit.X, t("ns.notes.del", new Object[0]) + ": " + notes.get(i8), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda45
                 @Override // java.lang.Runnable
                 public final void run() {
@@ -352,7 +353,7 @@ public final class ScrAssist {
         kit.add(nativeSettings.list(), kit.toggleRow(t("set.ai.briefhome", new Object[0]), null, "1".equals(nativeSettings.be.get("ai.briefhome")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda47
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.be.set("ai.briefhome", r2.booleanValue() ? "1" : "");
+                nativeSettings.be.set("ai.briefhome", ((Boolean)obj).booleanValue() ? "1" : "");
             }
         }));
         nativeSettings.fine(t("set.ai.briefhome.fine", new Object[0]));
@@ -743,10 +744,10 @@ public final class ScrAssist {
         textViewArr2[0].setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda9
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                Kit.this.pickSheet(nativeSettings.root, ScrAssist.t("ns.oai.preset", new Object[0]), strArr3, strArr4, r4[0], new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda5
+                kit.pickSheet(nativeSettings.root, ScrAssist.t("ns.oai.preset", new Object[0]), strArr3, strArr4, r4[0], new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda5
                     @Override // java.util.function.Consumer
                     public final void accept(Object obj) {
-                        ScrAssist.lambda$oaiCard$28(r1, r2, r3, r4, (String) obj);
+                        /* lambda$oaiCard$28 r-vars elided */
                     }
                 });
             }
@@ -970,19 +971,19 @@ public final class ScrAssist {
         kit.add(list, kit.toggleRow(t("set.v.speak", new Object[0]), null, !"0".equals(nativeSettings.pref("ai.speak", "1")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda33
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.be.set("ai.speak", r2.booleanValue() ? "1" : "0");
+                nativeSettings.be.set("ai.speak", ((Boolean)obj).booleanValue() ? "1" : "0");
             }
         }));
         kit.add(list, kit.toggleRow(t("set.v.autosend", new Object[0]), null, !"0".equals(nativeSettings.pref("ai.voice.autosend", "1")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda34
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.be.set("ai.voice.autosend", r2.booleanValue() ? "1" : "0");
+                nativeSettings.be.set("ai.voice.autosend", ((Boolean)obj).booleanValue() ? "1" : "0");
             }
         }));
         kit.add(list, kit.toggleRow(t("set.v.conv", new Object[0]), null, "1".equals(nativeSettings.pref("ai.voice.conv", "")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda35
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.be.set("ai.voice.conv", r2.booleanValue() ? "1" : "");
+                nativeSettings.be.set("ai.voice.conv", ((Boolean)obj).booleanValue() ? "1" : "");
             }
         }));
         ArrayList arrayList = new ArrayList();
@@ -1001,7 +1002,7 @@ public final class ScrAssist {
             arrayList2.add(strArr3[z3 ? 1 : 0]);
             hashSet.add(strArr3[0]);
             i3++;
-            z2 = z3 ? 1 : 0;
+            z2 = z3;
         }
         boolean z4 = z2;
         if (!pref.isEmpty() && !hashSet.contains(pref)) {
@@ -1295,7 +1296,7 @@ public final class ScrAssist {
         kit.add(nativeSettings.list(), kit.toggleRow(t("aif.pause", new Object[0]), t("aif.pause.sub", new Object[0]), paused, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrAssist$$ExternalSyntheticLambda60
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrAssist.lambda$aif$54(Features.this, nativeSettings, (Boolean) obj);
+                ScrAssist.lambda$aif$54(nativeSettings.F, nativeSettings, (Boolean) obj);
             }
         }));
         nativeSettings.sec(t("aif.usage", new Object[0]));
@@ -1346,7 +1347,7 @@ public final class ScrAssist {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public static /* synthetic */ void lambda$aif$54(Features features, NativeSettings nativeSettings, Boolean bool) {
-        features.setPref("paused", bool);
+        features.setPref("paused", bool != null && bool.booleanValue() ? "true" : "false");
         nativeSettings.paint();
     }
 

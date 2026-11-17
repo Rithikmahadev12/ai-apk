@@ -275,20 +275,20 @@ public final class DockLayer extends View {
             this.ka = this.target;
             this.hv = 0.0f;
         }
-        Object[] objArr = this.hold || this.hv > 0.02f || Math.abs(this.target - this.ka) > 0.05f;
+        boolean objArr = this.hold || this.hv > 0.02f || Math.abs(this.target - this.ka) > 0.05f;
         this.frameN++;
         if (!this.hold) {
             this.ka += (this.target - this.ka) * 0.16f;
         }
         this.hv += ((this.hold ? 1.0f : 0.0f) - this.hv) * 0.15f;
         float f2 = this.hold ? this.fa : this.ka;
-        if (this.lk == f2 && objArr != true && z && this.frameN % k.dockDiv != 0) {
+        if (this.lk == f2 && !objArr && z && this.frameN % k.dockDiv != 0) {
             return true;
         }
         this.lk = f2;
         this.tS = z ? ((float) (j - this.t0)) / 1000.0f : 0.0f;
         invalidate();
-        return objArr == true || z;
+        return objArr || z;
     }
 
     @Override // android.view.View

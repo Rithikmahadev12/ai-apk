@@ -131,4 +131,18 @@ public class NativeSettings {
 
     // ── Lambda dispatch used by Scr* classes ───────────────────────────
     public void m356lambda$navRow$7$comaugmaososettingsNativeSettings(String screen) { }
+
+    // voiceInfo and ttsVoices — raw JSON strings cached by ScrAssist
+    public String voiceInfo = null;
+    public String ttsVoices = null;
+
+    // lambda for screen navigation — called by ScrAssist
+    public void m354lambda$fixRow$10$comaugmaososettingsNativeSettings(String screen) {
+        open(screen, null);
+    }
+
+    // setPref overload accepting Boolean (ScrAssist calls setPref("paused", bool))
+    public void setPref(String key, Boolean value) {
+        if (F != null) F.setPref(key, value != null ? value.toString() : "false");
+    }
 }

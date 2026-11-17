@@ -77,10 +77,10 @@ public final class ScrLook {
             }, t("ns.col.custom", new Object[i2]) + ", " + str6, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda9
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrLook.picker(r0, str6, color, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda16
+                    ScrLook.picker(nativeSettings, str6, color, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda16
                         @Override // java.util.function.Consumer
                         public final void accept(Object obj) {
-                            ScrLook.setColor(nativeSettings, r2, (String) obj);
+                            ScrLook.setColor(nativeSettings, str5, (String) obj);
                         }
                     });
                 }
@@ -227,7 +227,7 @@ public final class ScrLook {
         kit.add(nativeSettings.list(), kit.toggleRow(t("motion.reduce", new Object[0]), nativeSettings.be.powerSave() ? t("motion.saver.on", new Object[0]) : t("motion.saver.off", new Object[0]), "1".equals(Store.get("aos.rm", "")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda0
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                nativeSettings.setBoth("aos.rm", r2.booleanValue() ? "1" : "");
+                nativeSettings.setBoth("aos.rm", ((Boolean)obj).booleanValue() ? "1" : "");
             }
         }));
         nativeSettings.sec(t("ns.textsize", new Object[0]));
@@ -299,7 +299,7 @@ public final class ScrLook {
             kit.add(list, kit.toggleRow(t2, null, z, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda4
                 @Override // java.util.function.Consumer
                 public final void accept(Object obj) {
-                    Perf.set(str, Integer.valueOf(r1.booleanValue() ? 1 : 0));
+                    Perf.set(str, Integer.valueOf(((Boolean)obj).booleanValue() ? 1 : 0));
                 }
             }));
             i3++;

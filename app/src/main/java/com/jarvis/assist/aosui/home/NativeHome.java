@@ -1,9 +1,13 @@
 package com.jarvis.assist.aosui.home;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import com.jarvis.assist.aosui.Backend;
 
 public class NativeHome {
+    public static final Handler MAIN = new Handler(Looper.getMainLooper());
+
     public NativeHome(Backend b) { }
     public static void noteNotif(String s) { }
     public View view() { return null; }

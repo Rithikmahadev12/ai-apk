@@ -107,7 +107,7 @@ public final class PageView extends ViewGroup {
                         make.go = new Consumer() { // from class: com.jarvis.assist.aosui.home.PageView$$ExternalSyntheticLambda2
                             @Override // java.util.function.Consumer
                             public final void accept(Object obj) {
-                                PageView.Host.this.tap((String) obj);
+                                host.tap((String) obj);
                             }
                         };
                         this.widgets.add(make);
@@ -155,7 +155,7 @@ public final class PageView extends ViewGroup {
                 break;
             }
             if ("grid".equals(it.next().type)) {
-                f8 += (HomePages.grid(r9.items.size())[1] * Math.min(60.0f, (f6 / 4.0f) * 0.9f)) + 8.0f;
+                f8 += (HomePages.grid(it.next().items.size())[1] * Math.min(60.0f, (f6 / 4.0f) * 0.9f)) + 8.0f;
             } else {
                 i6++;
             }

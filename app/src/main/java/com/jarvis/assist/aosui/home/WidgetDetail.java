@@ -342,7 +342,7 @@ public final class WidgetDetail {
                         str9 = str6;
                     }
                 }
-                for (Map.Entry entry : treeMap.entrySet()) {
+                for (java.util.Map.Entry<String, java.util.List> entry : ((java.util.TreeMap<String, java.util.List>) treeMap).entrySet()) {
                     card8.addView(kit.section(((String) entry.getKey()) + str8 + ((List) entry.getValue()).size()));
                     Iterator it3 = ((List) entry.getValue()).iterator();
                     while (it3.hasNext()) {
@@ -479,7 +479,7 @@ public final class WidgetDetail {
         LinearLayout linearLayout2 = new LinearLayout(context);
         if (str3 != null) {
             final FrameLayout frameLayout3 = frameLayout;
-            r11 = 0;
+            boolean r11 = false;
             linearLayout2.addView(kit.btn(Strings.t("wd.open"), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.home.WidgetDetail$$ExternalSyntheticLambda2
                 @Override // java.lang.Runnable
                 public final void run() {
@@ -488,7 +488,7 @@ public final class WidgetDetail {
             }));
             frameLayout2 = frameLayout3;
         } else {
-            r11 = 0;
+            r11 = false;
             frameLayout2 = frameLayout;
         }
         linearLayout2.addView(kit.btn(Strings.t("wd.close"), true, r11, new Runnable() { // from class: com.jarvis.assist.aosui.home.WidgetDetail$$ExternalSyntheticLambda3
@@ -498,7 +498,7 @@ public final class WidgetDetail {
             }
         }));
         View[] viewArr = new View[1];
-        viewArr[r11] = linearLayout2;
+        viewArr[0] = linearLayout2;
         linearLayout.addView(kit.hrow(viewArr));
         frameLayout2.addView(scrollView, new FrameLayout.LayoutParams(-1, -1));
         scrollView.setAlpha(0.0f);
