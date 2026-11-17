@@ -4,9 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import com.jarvis.assist.aosui.Backend;
+import com.jarvis.assist.aosui.ai.Features;
 import com.jarvis.assist.aosui.core.SettingsModel;
 import com.jarvis.assist.aosui.core.Theme;
 import com.jarvis.assist.aosui.ui.Kit;
@@ -15,33 +17,29 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class NativeSettings {
-    // Fields accessed by ScrLayout, ScrData, ScrFx
+
+    // ── Core fields accessed by all Scr* classes ──────────────────────
     public Kit k;
     public Context c;
     public float dn;
     public Backend be;
     public FrameLayout root;
     public Theme th;
-    // ScrData HG (health gateway) state fields
+
+    // ── F is properly typed as Features (ScrAssist calls F.on/set/etc) ─
+    public Features F = null;
+
+    // ── ScrData health-gateway state ──────────────────────────────────
     public String hgMsg = "";
     public String hgTest = "";
     public String hgSrc = "";
     public boolean hgBusy = false;
-    // other state fields
-    public String paInfo = "";
-    public String paLine = "";
-    public String paMode = "";
-    public String ttsVoices = "";
-    public String voiceInfo = "";
+
+    // ── ScrAssist state flags ─────────────────────────────────────────
     public boolean perfTesting = false;
     public boolean drafts = false;
-    public boolean keep = false;
-    public String conn = "";
-    public String ai = "";
-    public String pref = "";
-    public Object F = null;
 
-    // Static fields
+    // ── Static handler ─────────────────────────────────────────────────
     public static final Handler MAIN = new Handler(Looper.getMainLooper());
 
     public NativeSettings(Backend b) {
@@ -49,7 +47,7 @@ public class NativeSettings {
         this.c = b.ctx();
     }
 
-    // Static utility methods
+    // ── Static utility ─────────────────────────────────────────────────
     public static String t(String key, Object... args) { return key; }
     public static String up(String str) {
         if (str == null || str.isEmpty()) return str;
@@ -64,7 +62,7 @@ public class NativeSettings {
         catch (Exception e) { return new JSONArray(); }
     }
 
-    // Instance methods
+    // ── Lifecycle / nav ────────────────────────────────────────────────
     public View view() { return null; }
     public void open(String screen, String res) { }
     public void onBack() { }
@@ -73,12 +71,16 @@ public class NativeSettings {
     public void onPause() { }
     public void onResume() { }
     public void trim(int i, int j) { }
+
+    // ── Settings model helpers ─────────────────────────────────────────
     public SettingsModel.Cfg cfg() { return new SettingsModel.Cfg(); }
     public void saveCfg(SettingsModel.Cfg cfg) { }
     public void setBoth(String key, String value) { }
     public void paint() { }
     public void toast(String msg) { }
     public void guide(String str) { }
+
+    // ── View building helpers ──────────────────────────────────────────
     public void add(View view) { }
     public void add(Tiles tiles) { }
     public View hd(String title, String sub) { return null; }
@@ -87,6 +89,46 @@ public class NativeSettings {
     public void fine(String text) { }
     public LinearLayout list() { return new LinearLayout(c); }
 
-    // Lambda dispatch used by Scr* classes
+    // ── AI / PA methods used by ScrAssist ─────────────────────────────
+
+    /** Current AI configuration JSON (claude / gemini / openai sub-objects) */
+    public JSONObject ai() { return new JSONObject(); }
+
+    /** One-line string describing the current Personal Assistant mode */
+    public String paLine() { return ""; }
+
+    /** Is Personal Assistant mode active? */
+    public boolean paMode() { return false; }
+
+    /** Personal Assistant info (label, pkg, etc.) */
+    public JSONObject paInfo() { return new JSONObject(); }
+
+    /**
+     * keep — binds an EditText to a prefs key so its content survives redraws.
+     * Returns the same EditText for chaining.
+     */
+    public EditText keep(EditText editText, String prefsKey) { return editText; }
+
+    /**
+     * pref — reads a prefs string with a default.
+     */
+    public String pref(String key, String defVal) {
+        try {
+            String v = be != null ? be.get(key) : null;
+            return (v != null && !v.isEmpty()) ? v : defVal;
+        } catch (Exception e) { return defVal; }
+    }
+
+    /**
+     * conn — creates a small info-row view (label + value chip).
+     * @param label   left label text
+     * @param value   right value text
+     * @param enabled dimmed when false
+     */
+    public View conn(String label, String value, boolean enabled) {
+        return new View(c);
+    }
+
+    // ── Lambda dispatch used by Scr* classes ───────────────────────────
     public void m356lambda$navRow$7$comaugmaososettingsNativeSettings(String screen) { }
 }
