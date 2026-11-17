@@ -5,21 +5,41 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import com.jarvis.assist.aosui.Backend;
 import com.jarvis.assist.aosui.core.SettingsModel;
+import com.jarvis.assist.aosui.core.Theme;
 import com.jarvis.assist.aosui.ui.Kit;
 import com.jarvis.assist.aosui.ui.Tiles;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class NativeSettings {
-    // Fields accessed directly by ScrLayout
+    // Fields accessed by ScrLayout, ScrData, ScrFx
     public Kit k;
-    public android.content.Context c;
+    public Context c;
     public float dn;
     public Backend be;
     public FrameLayout root;
-    public Kit.Theme th;
+    public Theme th;
+    // ScrData HG (health gateway) state fields
+    public String hgMsg = "";
+    public String hgTest = "";
+    public String hgSrc = "";
+    public boolean hgBusy = false;
+    // other state fields
+    public String paInfo = "";
+    public String paLine = "";
+    public String paMode = "";
+    public String ttsVoices = "";
+    public String voiceInfo = "";
+    public boolean perfTesting = false;
+    public boolean drafts = false;
+    public boolean keep = false;
+    public String conn = "";
+    public String ai = "";
+    public String pref = "";
+    public Object F = null;
 
     // Static fields
     public static final Handler MAIN = new Handler(Looper.getMainLooper());
@@ -31,6 +51,10 @@ public class NativeSettings {
 
     // Static utility methods
     public static String t(String key, Object... args) { return key; }
+    public static String up(String str) {
+        if (str == null || str.isEmpty()) return str;
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    }
     public static JSONObject J(String str) {
         try { return str != null ? new JSONObject(str) : new JSONObject(); }
         catch (Exception e) { return new JSONObject(); }
@@ -40,7 +64,7 @@ public class NativeSettings {
         catch (Exception e) { return new JSONArray(); }
     }
 
-    // Instance methods used by ScrLayout
+    // Instance methods
     public View view() { return null; }
     public void open(String screen, String res) { }
     public void onBack() { }
@@ -51,15 +75,18 @@ public class NativeSettings {
     public void trim(int i, int j) { }
     public SettingsModel.Cfg cfg() { return new SettingsModel.Cfg(); }
     public void saveCfg(SettingsModel.Cfg cfg) { }
+    public void setBoth(String key, String value) { }
     public void paint() { }
+    public void toast(String msg) { }
+    public void guide(String str) { }
     public void add(View view) { }
     public void add(Tiles tiles) { }
     public View hd(String title, String sub) { return null; }
     public void sec(String title) { }
     public int px(float dp) { return (int)(dp * dn); }
     public void fine(String text) { }
-    public View list() { return null; }
+    public LinearLayout list() { return new LinearLayout(c); }
 
-    // Lambda dispatch used by ScrLayout
+    // Lambda dispatch used by Scr* classes
     public void m356lambda$navRow$7$comaugmaososettingsNativeSettings(String screen) { }
 }

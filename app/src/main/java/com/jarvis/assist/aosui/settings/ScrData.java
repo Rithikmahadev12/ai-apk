@@ -59,10 +59,10 @@ public final class ScrData {
             nativeSettings.add(kit.hrow(kit.btn(t("gg.connect", new Object[0]), false, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda31
                 @Override // java.lang.Runnable
                 public final void run() {
-                    GoogleLink.signIn(r0.c, new GoogleLink.Done() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda21
+                    GoogleLink.signIn(nativeSettings.c, new GoogleLink.Done() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda21
                         @Override // com.jarvis.assist.aosui.GoogleLink.Done
                         public final void done(boolean z, String str) {
-                            ScrData.lambda$google$1(NativeSettings.this, r2, z, str);
+                            ScrData.lambda$google$1(nativeSettings, kit, z, str);
                         }
                     });
                 }
@@ -108,14 +108,14 @@ public final class ScrData {
                 Memory.io(new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda0
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrData.lambda$google$3(NativeSettings.this);
+                        ScrData.lambda$google$3(nativeSettings);
                     }
                 });
             }
         }), kit.btn(t("gg.disconnect", new Object[0]), true, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda33
             @Override // java.lang.Runnable
             public final void run() {
-                ScrData.lambda$google$5(NativeSettings.this);
+                ScrData.lambda$google$5(nativeSettings);
             }
         })));
         nativeSettings.fine(t("gg.fine", new Object[0]));
@@ -135,7 +135,7 @@ public final class ScrData {
         nativeSettings.root.post(new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda18
             @Override // java.lang.Runnable
             public final void run() {
-                ScrData.lambda$google$0(Kit.this, nativeSettings, str);
+                ScrData.lambda$google$0(kit, nativeSettings, str);
             }
         });
     }
@@ -254,7 +254,7 @@ public final class ScrData {
                 nativeSettings.add(kit.seg(new String[]{"°C", "°F"}, new String[]{"c", "f"}, wx[1], t("ns.wx.units", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda16
                     @Override // java.util.function.Consumer
                     public final void accept(Object obj) {
-                        ScrData.lambda$weather$7(NativeSettings.this, (String) obj);
+                        ScrData.lambda$weather$7(nativeSettings, (String) obj);
                     }
                 }));
                 nativeSettings.sec(t("ns.wx.keys", new Object[0]));
@@ -271,7 +271,7 @@ public final class ScrData {
             View add = kit.add(list, kit.row(null, 0, t("ns.wx.s." + str, new Object[0]), up(t("ns.wx.d." + str, new Object[0])) + (z ? " · " + t("ns.wx.addkey", new Object[0]) : ""), false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda15
                 @Override // java.lang.Runnable
                 public final void run() {
-                    ScrData.lambda$weather$6(NativeSettings.this, str);
+                    ScrData.lambda$weather$6(nativeSettings, str);
                 }
             }, equals ? kit.iconView(Kit.CHECK, kit.ACC, 14.0f) : null));
             if (equals) {
@@ -318,7 +318,7 @@ public final class ScrData {
         TextView btn = kit.btn(t("ns.paste", new Object[0]), true, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda4
             @Override // java.lang.Runnable
             public final void run() {
-                ScrData.lambda$wxKey$10(NativeSettings.this, biConsumer);
+                ScrData.lambda$wxKey$10(nativeSettings, biConsumer);
             }
         });
         btn.setContentDescription(t("ns.paste", new Object[0]) + " " + str2);
@@ -327,13 +327,13 @@ public final class ScrData {
         viewArr[1] = !url.isEmpty() ? kit.btn(t("ns.getkey", new Object[0]), true, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda5
             @Override // java.lang.Runnable
             public final void run() {
-                NativeSettings.this.be.url(url);
+                nativeSettings.be.url(url);
             }
         }) : null;
         viewArr[2] = optBoolean ? kit.btn(t("ns.remove", new Object[0]), true, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda6
             @Override // java.lang.Runnable
             public final void run() {
-                ScrData.lambda$wxKey$12(NativeSettings.this, str);
+                ScrData.lambda$wxKey$12(nativeSettings, str);
             }
         }) : null;
         card.addView(kit.hrow(viewArr));
@@ -446,7 +446,7 @@ public final class ScrData {
             Runnable runnable = new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda10
                 @Override // java.lang.Runnable
                 public final void run() {
-                    NativeSettings.this.guide(str);
+                    nativeSettings.guide(str);
                 }
             };
             TextView chip = optBoolean ? kit.chip(z ? t("ns.hs.check", new Object[0]) : "ON", z ? 0 : kit.GOOD) : null;
@@ -483,10 +483,10 @@ public final class ScrData {
             String t2 = t("ns.hm." + strArr5[i2], new Object[i2]);
             View[] viewArr = new View[1];
             int i9 = i2;
-            viewArr[i9] = kit.select(nativeSettings.root, t2, strArr2, strArr3, jSONObject.optString(strArr5[i9], r8), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda11
+            viewArr[i9] = kit.select(nativeSettings.root, t2, strArr2, strArr3, jSONObject.optString(strArr5[i9], ""), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda11
                 @Override // java.util.function.Consumer
                 public final void accept(Object obj) {
-                    ScrData.lambda$health$15(NativeSettings.this, strArr5, (String) obj);
+                    ScrData.lambda$health$15(nativeSettings, strArr5, (String) obj);
                 }
             });
             kit.add(list2, kit.row(null, 0, t2, null, false, null, viewArr));
@@ -663,7 +663,7 @@ public final class ScrData {
         TextView btn = kit.btn(t("ns.copy", new Object[0]), true, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda17
             @Override // java.lang.Runnable
             public final void run() {
-                ScrData.lambda$code$28(NativeSettings.this, str);
+                ScrData.lambda$code$28(nativeSettings, str);
             }
         });
         btn.setContentDescription(t("ns.copy", new Object[0]) + " " + str);
@@ -733,7 +733,7 @@ public final class ScrData {
         Kit.KeyField keyField = nativeSettings.k.keyField(str3, z, t("ns.paste", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda2
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrData.lambda$field$29(NativeSettings.this, str2, str, map, (Kit.KeyField) obj);
+                ScrData.lambda$field$29(nativeSettings, str2, str, map, (Kit.KeyField) obj);
             }
         });
         if ("email".equals(str2)) {
@@ -763,7 +763,7 @@ public final class ScrData {
         btn.setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda20
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                ScrData.connect(NativeSettings.this, str, map, textView, btn);
+                ScrData.connect(nativeSettings, str, map, textView, btn);
             }
         });
         return btn;
@@ -843,7 +843,7 @@ public final class ScrData {
             nativeSettings.be.healthTestHc(new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrData$$ExternalSyntheticLambda8
                 @Override // java.util.function.Consumer
                 public final void accept(Object obj) {
-                    ScrData.lambda$test$32(NativeSettings.this, (String) obj);
+                    ScrData.lambda$test$32(nativeSettings, (String) obj);
                 }
             });
         } else {

@@ -3,6 +3,7 @@ package com.jarvis.assist.aosui;
 public class GoogleLink {
 
     private GoogleLink() { }
+    public interface Done { void done(boolean z, String str); }
     static java.lang.String access(Object p0) { return null; }
     public static java.lang.String clientId() { return null; }
     public static boolean configured() { return false; }

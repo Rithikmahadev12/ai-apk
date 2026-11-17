@@ -44,7 +44,7 @@ public class Features {
         public String id;
         public F() { }
     }
-    public boolean wake() { return false; }
+    public String wake() { return ""; }
     public java.util.List<String> shop() { return new java.util.ArrayList<>(); }
     public org.json.JSONArray filterNotifs(org.json.JSONArray arr) { return arr; }
     public boolean paused() { return false; }
@@ -52,4 +52,5 @@ public class Features {
     public void bump(int tokens) { }
     public void shopSet(java.util.List<String> shop) { }
     public String day() { return null; }
+    public boolean on(String feature) { return false; }
 }

@@ -175,7 +175,7 @@ public final class ScrLayout {
         kit.add(list, kit.row(null, 0, t, t2, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda46
             @Override // java.lang.Runnable
             public final void run() {
-                Backend.this.openLockWallpaper();
+                nativeSettings.be.openLockWallpaper();
             }
         }, new View[0]));
         TextView btn = kit.btn(t("ns.reset", new Object[0]), true, false, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda47
@@ -228,10 +228,10 @@ public final class ScrLayout {
             arrayList.add(kit.btn(t("lock.setup", new Object[0]), false, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda37
                 @Override // java.lang.Runnable
                 public final void run() {
-                    LockSheet.ask(r0.root, r0.th, nativeSettings.be, false, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda28
+                    LockSheet.ask(nativeSettings.root, nativeSettings.th, nativeSettings.be, false, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda28
                         @Override // java.util.function.Consumer
                         public final void accept(Object obj) {
-                            r1.run();
+                            /* r1 runnable: no-op stub */
                         }
                     });
                 }
@@ -249,10 +249,10 @@ public final class ScrLayout {
             arrayList.add(kit.btn(t("lock.setup", new Object[0]), false, true, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda39
                 @Override // java.lang.Runnable
                 public final void run() {
-                    LockSheet.ask(r0.root, r0.th, nativeSettings.be, true, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda18
+                    LockSheet.ask(nativeSettings.root, nativeSettings.th, nativeSettings.be, true, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda18
                         @Override // java.util.function.Consumer
                         public final void accept(Object obj) {
-                            r1.run();
+                            /* r1 runnable: no-op stub */
                         }
                     });
                 }
@@ -454,7 +454,7 @@ public final class ScrLayout {
                     spacer = kit.circle(Kit.UP, t("ns.up", "name", str3), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda54
                         @Override // java.lang.Runnable
                         public final void run() {
-                            ScrLayout.czMove(nativeSettings, str4, r2, i5 - 1);
+                            ScrLayout.czMove(nativeSettings, str4, null, i5 - 1);
                         }
                     });
                 } else {
@@ -466,7 +466,7 @@ public final class ScrLayout {
                 arrayList.add(i5 < slots.size() + (-1) ? kit.circle(Kit.DOWN, t("ns.down", obj, str3), true, 34.0f, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLayout$$ExternalSyntheticLambda55
                     @Override // java.lang.Runnable
                     public final void run() {
-                        ScrLayout.czMove(nativeSettings, str4, r2, i5 + 1);
+                        ScrLayout.czMove(nativeSettings, str4, null, i5 + 1);
                     }
                 }) : spacer(nativeSettings));
                 LinearLayout linearLayout2 = linearLayout;
@@ -1376,7 +1376,7 @@ public final class ScrLayout {
             @Override // java.util.Comparator
             public final int compare(Object obj, Object obj2) {
                 int compareTo;
-                compareTo = (r1.optString("app") + ((JSONObject) obj).optString("label")).compareTo(r2.optString("app") + ((JSONObject) obj2).optString("label"));
+                compareTo = (((JSONObject) obj).optString("app") + ((JSONObject) obj).optString("label")).compareTo(((JSONObject) obj2).optString("app") + ((JSONObject) obj2).optString("label"));
                 return compareTo;
             }
         });

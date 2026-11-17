@@ -88,4 +88,5 @@ public class PhoneAI {
     }
     public static String status(android.content.Context ctx) { return null; }
     public static void setOrder(android.content.Context ctx, String order) { }
+    public static void setKey(android.content.Context ctx, String key, Done done) { }
 }

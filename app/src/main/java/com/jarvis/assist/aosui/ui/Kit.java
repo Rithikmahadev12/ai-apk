@@ -747,7 +747,7 @@ public final class Kit {
             setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.ui.Kit$Toggle$$ExternalSyntheticLambda0
                 @Override // android.view.View.OnClickListener
                 public final void onClick(View view) {
-                    Kit.Toggle.this.m368lambda$new$0$comaugmaosouiKit$Toggle(view);
+                    Kit.toggle.m368lambda$new$0$comaugmaosouiKit$Toggle(view);
                 }
             });
             setAccessibilityDelegate(new View.AccessibilityDelegate() { // from class: com.jarvis.assist.aosui.ui.Kit.Toggle.1
@@ -756,8 +756,8 @@ public final class Kit {
                     super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                     accessibilityNodeInfo.setClassName("android.widget.Switch");
                     accessibilityNodeInfo.setCheckable(true);
-                    accessibilityNodeInfo.setChecked(Toggle.this.on);
-                    accessibilityNodeInfo.setEnabled(Toggle.this.enabled);
+                    accessibilityNodeInfo.setChecked(toggle.on);
+                    accessibilityNodeInfo.setEnabled(toggle.enabled);
                 }
             });
             setLayoutParams(new LinearLayout.LayoutParams(Kit.this.px(48.0f), Kit.this.px(44.0f)));
@@ -1573,10 +1573,10 @@ public final class Kit {
         text.postDelayed(new Runnable() { // from class: com.jarvis.assist.aosui.ui.Kit$$ExternalSyntheticLambda6
             @Override // java.lang.Runnable
             public final void run() {
-                r0.animate().alpha(0.0f).setDuration(200L).withEndAction(new Runnable() { // from class: com.jarvis.assist.aosui.ui.Kit$$ExternalSyntheticLambda0
+                text.animate().alpha(0.0f).setDuration(200L).withEndAction(new Runnable() { // from class: com.jarvis.assist.aosui.ui.Kit$$ExternalSyntheticLambda0
                     @Override // java.lang.Runnable
                     public final void run() {
-                        r1.removeView(r2);
+                        frameLayout.removeView(text);
                     }
                 }).start();
             }

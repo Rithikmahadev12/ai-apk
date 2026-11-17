@@ -52,13 +52,13 @@ public final class ScrFx {
         kit.add(list, kit.toggleRow(t("fx.snd", new Object[0]), t("fx.snd.sub", new Object[0]), cfg.sounds, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda0
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$0(FxModel.Cfg.this, nativeSettings, (Boolean) obj);
+                ScrFx.lambda$screen$0(cfg, nativeSettings, (Boolean) obj);
             }
         }));
         kit.add(list, kit.toggleRow(t("fx.follow", new Object[0]), t("fx.follow.sub", new Object[0]), cfg.follow, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda5
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$1(FxModel.Cfg.this, nativeSettings, (Boolean) obj);
+                ScrFx.lambda$screen$1(cfg, nativeSettings, (Boolean) obj);
             }
         }));
         LinearLayout slider = kit.slider(t("fx.vol", new Object[0]), 0, 100, 5, cfg.volume, t("fx.vol", new Object[0]), new IntFunction() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda6
@@ -69,7 +69,7 @@ public final class ScrFx {
         }, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda7
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$3(FxModel.Cfg.this, (Integer) obj);
+                ScrFx.lambda$screen$3(cfg, (Integer) obj);
             }
         });
         if (!cfg.sounds) {
@@ -82,21 +82,21 @@ public final class ScrFx {
         kit.add(list2, kit.toggleRow(t("fx.boot", new Object[0]), t("fx.boot.sub", new Object[0]), on, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda8
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$4(NativeSettings.this, (Boolean) obj);
+                ScrFx.lambda$screen$4(nativeSettings, (Boolean) obj);
             }
         }));
         if (HomeTheme.aoa(Store.get(Advanced.KEY, ""))) {
             kit.add(list2, kit.toggleRow(t("fx.unlock", new Object[0]), t("fx.unlock.sub", new Object[0]), UnlockAnim.on(Store.get(UnlockAnim.KEY, "")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda9
                 @Override // java.util.function.Consumer
                 public final void accept(Object obj) {
-                    ScrFx.lambda$screen$5(NativeSettings.this, (Boolean) obj);
+                    ScrFx.lambda$screen$5(nativeSettings, (Boolean) obj);
                 }
             }));
         }
         LinearLayout linearLayout = kit.toggleRow(t("fx.boot.unfold", new Object[0]), t("fx.boot.unfold.sub", new Object[0]), UnfoldModel.on(Store.get(UnfoldModel.KEY, "")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda10
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                Store.set(UnfoldModel.KEY, r1.booleanValue() ? "" : "0");
+                Store.set(UnfoldModel.KEY, ((Boolean) obj).booleanValue() ? "" : "0");
             }
         });
         if (!on) {
@@ -107,7 +107,7 @@ public final class ScrFx {
         kit.add(list2, kit.toggleRow(t("fx.charge", new Object[0]), t("fx.charge.sub", new Object[0]), ChargeFx.on(Store.get(ChargeFx.KEY, "")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda11
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                Store.set(ChargeFx.KEY, r1.booleanValue() ? "" : "0");
+                Store.set(ChargeFx.KEY, ((Boolean) obj).booleanValue() ? "" : "0");
             }
         }));
         nativeSettings.sec(t("fx.style", new Object[0]));
@@ -119,7 +119,7 @@ public final class ScrFx {
         nativeSettings.add(kit.seg(strArr, FxModel.STYLES, cfg.style, t("fx.style", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda12
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$8(FxModel.Cfg.this, nativeSettings, (String) obj);
+                ScrFx.lambda$screen$8(cfg, nativeSettings, (String) obj);
             }
         }));
         if (!Feedback.phone().touchSounds) {
@@ -134,7 +134,7 @@ public final class ScrFx {
         kit.add(nativeSettings.list(), kit.toggleRow(t("fx.hap", new Object[0]), t("fx.hap.sub", new Object[0]), cfg.haptics, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda13
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$9(FxModel.Cfg.this, nativeSettings, (Boolean) obj);
+                ScrFx.lambda$screen$9(cfg, nativeSettings, (Boolean) obj);
             }
         }));
         nativeSettings.sec(t("fx.str", new Object[0]));
@@ -146,7 +146,7 @@ public final class ScrFx {
         nativeSettings.add(kit.seg(strArr2, FxModel.STRENGTHS, cfg.strength, t("fx.str", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrFx$$ExternalSyntheticLambda1
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrFx.lambda$screen$10(FxModel.Cfg.this, nativeSettings, (String) obj);
+                ScrFx.lambda$screen$10(cfg, nativeSettings, (String) obj);
             }
         }));
         nativeSettings.sec(t("fx.test", new Object[0]));

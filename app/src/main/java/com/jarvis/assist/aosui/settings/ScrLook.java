@@ -42,7 +42,7 @@ public final class ScrLook {
         nativeSettings.add(kit.themePicker(Store.get(Advanced.KEY, ""), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda6
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.lambda$look$0(NativeSettings.this, (String) obj);
+                ScrLook.lambda$look$0(nativeSettings, (String) obj);
             }
         }));
         nativeSettings.sec(t("ns.theme", new Object[0]));
@@ -58,7 +58,7 @@ public final class ScrLook {
         nativeSettings.add(kit.seg(strArr2, strArr, str, t("ns.theme", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda7
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.lambda$look$1(NativeSettings.this, (String) obj);
+                ScrLook.lambda$look$1(nativeSettings, (String) obj);
             }
         }));
         String[] strArr4 = {t("ns.col.accent", new Object[0]), t("ns.col.ink", new Object[0]), t("ns.col.alert", new Object[0])};
@@ -72,7 +72,7 @@ public final class ScrLook {
             LinearLayout swatches = kit.swatches(SettingsModel.PAL[i3], color, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda8
                 @Override // java.util.function.Consumer
                 public final void accept(Object obj) {
-                    ScrLook.setColor(NativeSettings.this, str5, (String) obj);
+                    ScrLook.setColor(nativeSettings, str5, (String) obj);
                 }
             }, t("ns.col.custom", new Object[i2]) + ", " + str6, new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda9
                 @Override // java.lang.Runnable
@@ -80,7 +80,7 @@ public final class ScrLook {
                     ScrLook.picker(r0, str6, color, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda16
                         @Override // java.util.function.Consumer
                         public final void accept(Object obj) {
-                            ScrLook.setColor(NativeSettings.this, r2, (String) obj);
+                            ScrLook.setColor(nativeSettings, r2, (String) obj);
                         }
                     });
                 }
@@ -108,7 +108,7 @@ public final class ScrLook {
         nativeSettings.add(kit.seg(new String[]{t("ns.tp.clear", new Object[0]), t("ns.tp.glass", new Object[0]), t("ns.tp.frosted", new Object[0]), t("ns.tp.solid", new Object[0])}, new String[]{"8,2", "42,12", "70,18", "100,0"}, str4, t("ns.tp", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda10
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.lambda$look$5(NativeSettings.this, (String) obj);
+                ScrLook.lambda$look$5(nativeSettings, (String) obj);
             }
         }));
         nativeSettings.add(kit.slider(t("ns.tp.panels", new Object[0]), 0, 100, 1, ui[0], t("ns.tp.panels", new Object[0]), new IntFunction() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda11
@@ -119,7 +119,7 @@ public final class ScrLook {
         }, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda12
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.setUi(NativeSettings.this, ((Integer) obj).intValue(), -1, -1);
+                ScrLook.setUi(nativeSettings, ((Integer) obj).intValue(), -1, -1);
             }
         }));
         nativeSettings.add(kit.slider(t("ns.tp.blur", new Object[0]), 0, 24, 1, ui[1], t("ns.tp.blur", new Object[0]), new IntFunction() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda13
@@ -130,7 +130,7 @@ public final class ScrLook {
         }, new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda14
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.setUi(NativeSettings.this, -1, ((Integer) obj).intValue(), -1);
+                ScrLook.setUi(nativeSettings, -1, ((Integer) obj).intValue(), -1);
             }
         }));
     }
@@ -227,14 +227,14 @@ public final class ScrLook {
         kit.add(nativeSettings.list(), kit.toggleRow(t("motion.reduce", new Object[0]), nativeSettings.be.powerSave() ? t("motion.saver.on", new Object[0]) : t("motion.saver.off", new Object[0]), "1".equals(Store.get("aos.rm", "")), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda0
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                NativeSettings.this.setBoth("aos.rm", r2.booleanValue() ? "1" : "");
+                nativeSettings.setBoth("aos.rm", r2.booleanValue() ? "1" : "");
             }
         }));
         nativeSettings.sec(t("ns.textsize", new Object[0]));
         nativeSettings.add(kit.sliderAa(85, 130, 5, ui[2], t("ns.textsize", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda1
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.setUi(NativeSettings.this, -1, -1, ((Integer) obj).intValue());
+                ScrLook.setUi(nativeSettings, -1, -1, ((Integer) obj).intValue());
             }
         }));
         nativeSettings.fine(t("ns.textsize.fine", "n", Integer.valueOf(ui[2])));
@@ -265,7 +265,7 @@ public final class ScrLook {
         nativeSettings.add(kit.seg(strArr, PerfModel.MODES, state.optString("mode", "auto"), t("perf.mode", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda2
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.lambda$perf$12(NativeSettings.this, (String) obj);
+                ScrLook.lambda$perf$12(nativeSettings, (String) obj);
             }
         }));
         nativeSettings.fine(t("perf.mode.sub", new Object[0]));
@@ -280,7 +280,7 @@ public final class ScrLook {
         nativeSettings.add(kit.seg(strArr2, strArr3, state.optString("fps", "auto"), t("perf.fps", new Object[0]), new Consumer() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda3
             @Override // java.util.function.Consumer
             public final void accept(Object obj) {
-                ScrLook.lambda$perf$13(NativeSettings.this, (String) obj);
+                ScrLook.lambda$perf$13(nativeSettings, (String) obj);
             }
         }));
         LinearLayout list = nativeSettings.list();
@@ -309,7 +309,7 @@ public final class ScrLook {
         btn.setOnClickListener(new View.OnClickListener() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda5
             @Override // android.view.View.OnClickListener
             public final void onClick(View view) {
-                ScrLook.lambda$perf$16(NativeSettings.this, view);
+                ScrLook.lambda$perf$16(nativeSettings, view);
             }
         });
         nativeSettings.add(kit.hrow(btn));
@@ -351,7 +351,7 @@ public final class ScrLook {
         Perf.retest(new Runnable() { // from class: com.jarvis.assist.aosui.settings.ScrLook$$ExternalSyntheticLambda15
             @Override // java.lang.Runnable
             public final void run() {
-                ScrLook.lambda$perf$15(NativeSettings.this);
+                ScrLook.lambda$perf$15(nativeSettings);
             }
         });
     }

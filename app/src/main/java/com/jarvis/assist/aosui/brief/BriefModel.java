@@ -643,7 +643,7 @@ public final class BriefModel {
                     arrayList.add(f(tr, ev.allDay ? "db.say.tonight.ad" : "db.say.tonight", "n", Integer.valueOf(i), "first", ev.title, "at", hm(ev.start)) + ".");
                 }
             }
-            boolean z = out.evening;
+            int z = out.evening ? 1 : 0;
             int i2 = 0;
             Ev ev3 = null;
             for (Ev ev4 : out.events) {
